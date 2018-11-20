@@ -244,6 +244,7 @@ TODO: intuition for CF approach
 https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj
 
 ### Estimated returns on education
+
 - Estimates from OLS & CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
 - Generally, CF estimates are much more volatile and less precise
 
@@ -252,14 +253,22 @@ Differences between replicated & original estimations
 - Our CMI estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
-### Control function estimates
+### Control function estimates {.allowframebreaks}
+
 Instrumental variable in first stage
 - *number of siblings* is significant at the 0.1% level for all years
 - as expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 & -0.23)
 - We would assume that the instrument does not directly affect the error term in the wage equation
 
 Coefficients of the control functions
-- $\gamma_1$
+- $\gamma_1$ is negative for majority of years, yet very small and insignificant in all years
+    - Gebel & Pfeiffer (2010) estimate a positive coefficient in the 1980s and 1990s - but also insignificant
+-  $\gamma_2$ is negative and close to zero for most years
+    - indicates that those with unexpectedly high education have lower returns to education
+    - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
+    - The estimates are very similar to those of Gebel & Pfeiffer (2010)
+
+- that both coefficients are (mostly) negative hints that educational expansion caused more “less abled” to achieve higher education
 
 ### Explanations for divergences between replication and Gebel & Pfeiffer (2010)
 
@@ -268,6 +277,5 @@ Coefficients of the control functions
 
 ### Pro's & Con's of estimation methods
 
-### The end :)
-
-
+### The end
+...
