@@ -1,0 +1,576 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[10pt,ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usetheme[]{Luebeck}
+\usecolortheme{whale}
+\usefonttheme{structuresmallcapsserif}
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdfauthor={Luisa Hammer and Marcelo Avila},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\widowpenalties 1 150
+\setbeameroption{show notes}
+\newcommand{\begincols}[1]{\begin{columns}{#1}}
+\newcommand{\stopcols}{\end{columns}}
+
+\title{Replication of ``Educational Expansion and Its Heterogeneous Returns for
+Wage Workers''\\
+by\\
+Michael Gebel and Friedhelm Pfeiffer}
+\author{Luisa Hammer and Marcelo Avila}
+\date{22 Nov 2018}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+
+TODO: include outline of present.
+
+\end{frame}
+
+\hypertarget{theoretical-part}{%
+\section{Theoretical Part}\label{theoretical-part}}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+\begin{frame}{Summary of Gebel \& Pfeiffer (2010)}
+\protect\hypertarget{summary-of-gebel-pfeiffer-2010}{}
+
+\begin{itemize}
+\tightlist
+\item
+  basic idea: examine evolution of returns to education in West German
+  labour market.
+\item
+  Focus on change in returns to education over time as a consequence to
+  education expansion in Germany.
+\item
+  methodology:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Wooldrigdge's (2004) \textbf{conditional mean independence}
+  \item
+    Garen's (1984) \textbf{control function} approach, that requires an
+    \emph{exclusion restriction}
+  \item
+    as well as OLS
+  \end{itemize}
+\item
+  data: SOEP 1984-2006
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Data and Variables}
+\protect\hypertarget{data-and-variables}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Log of hourly wage
+\item
+  Years of education (constructed from categorical variable)
+\item
+  Age and age squared
+\item
+  Gender
+\item
+  Father's education
+\item
+  Mother's ecucation
+\item
+  Father's occupation
+\item
+  Rural or urban household
+\item
+  Number of Siblings (as instrument)
+\end{itemize}
+
+TODO: more detailed table? (Comment) not necessary
+
+\end{frame}
+
+\begin{frame}{Background Information}
+\protect\hypertarget{background-information}{}
+
+\begin{itemize}
+\item
+  \textbf{increase in educational attainment} in the 1960s. From 1984 to
+  2006, average years of schooling increased:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    woman: 11.3 -\textgreater{} 12.8
+  \item
+    men: 11.9 -\textgreater{} 12.9
+  \end{itemize}
+\item
+  \textbf{How can educational expansion affect the returns to
+  education?}
+\item
+  Standard theory: an increase of labor supply of high-skilled workers
+  should decrease the returns to education
+\item
+  High-educated workers with higher unobserved motivation / ability
+  which positively affects wages
+\item
+  More ``less talented'' accepted to higher education \& thereby
+  decreasing the average productivity levels of higher educated workers
+  --\textgreater{} overall effect not clear
+\item
+  unobserved characteristics leading to \textbf{selection bias}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    higher ability and motivation to stay longer in education
+  \item
+    select jobs with expected higher returns.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{A few a priori hypotheses}
+\protect\hypertarget{a-few-a-priori-hypotheses}{}
+
+(Comment) imo not super important, could be neglected because we have
+enough stuff tot alk about - but nice table!
+
+\begin{longtable}[]{@{}lcc@{}}
+\toprule
+Factors affecting RtE & \(\Uparrow\) RTE & \(\Downarrow\)
+RTE\tabularnewline
+\midrule
+\endhead
+Increase in female labour participation & &
+\(\checkmark\)\tabularnewline
+Birth cohort sizes (Baby boom) & & \(\checkmark\)\tabularnewline
+Wage determination processes (entrants) & &
+\(\checkmark\)\tabularnewline
+Skill-biased technological change & \(\checkmark\) &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\hypertarget{econometric-approach}{%
+\subsection{Econometric Approach}\label{econometric-approach}}
+
+\begin{frame}[allowframebreaks]{Empirical Framework (Derivation)}
+\protect\hypertarget{empirical-framework-derivation}{}
+
+The study is based on the \textbf{correlated random coefficient model}
+(Blundell / Dearden / Sianesi, 2005; Heckman / Vytlacil, 1998;
+Wooldridge, 2004). \[\ln Y_i = a_i + b_i S_i\] with
+\(a_i = a'X_i + \varepsilon_{ai}\), and
+\(b_i = b'X_i + \varepsilon_{bi}\)
+
+where \(\ln Y_i\) : log of wages and \(S_i\) years of schooling of
+individual \(i\)
+
+\begin{itemize}
+\item
+  The model has, therefore, an \textbf{individual-specific intercept}
+  \(a_i\) and \textbf{slope} \(b_i\) dependent on \textbf{observables}
+  \(X_i\) and \textbf{unobservables} \(\varepsilon_{ai}\) and
+  \(\varepsilon_{bi}\).
+\item
+  Does not assume that \(b_i\) and \(S_i\) are independent
+  --\textgreater{} Individuals with higher expected benefits from
+  education are more likely to remain longer in education
+  --\textgreater{} \(b_i\) may be correlated with \(S_i\) meaning
+  positive self-selection.
+\item
+  focus: estimate average partial effect (APE), which is the return per
+  aditional year of education for a randomly chosen individual (or
+  averaged across the population)
+  \[E(\partial \ln Y / \partial S) = E(b_i) = \beta\]
+\end{itemize}
+
+In case of homogenous returns to education the wage equation reduces to:
+\[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\] - Unobserved
+heterogeneity may only affect the \textbf{intercept} of the wage
+equation.
+
+\begin{itemize}
+\tightlist
+\item
+  still potential endogeneity if \(\varepsilon_{ai}\) correlates with
+  \(S_i\)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Empirical Framework (Intuition) I}
+\protect\hypertarget{empirical-framework-intuition-i}{}
+
+\includegraphics[width=3.125in,height=\textheight]{img/rcmodel001.png}
+
+\begin{itemize}
+\tightlist
+\item
+  Simple OLS
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Empirical Framework (Intuition) II}
+\protect\hypertarget{empirical-framework-intuition-ii}{}
+
+\includegraphics[width=3.125in,height=\textheight]{img/rcmodel002.png}
+
+\begin{itemize}
+\tightlist
+\item
+  Multiple OLS with homogenous return to Educ
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Empirical Framework (Intuition) III}
+\protect\hypertarget{empirical-framework-intuition-iii}{}
+
+\includegraphics[width=3.125in,height=\textheight]{img/rcmodel003.png}
+
+\begin{itemize}
+\tightlist
+\item
+  Correlated Random Coefficient Model
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Distinction to conventional methods}
+\protect\hypertarget{distinction-to-conventional-methods}{}
+
+\begin{itemize}
+\tightlist
+\item
+  OLS
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ability and ``background'' bias
+  \end{itemize}
+\item
+  IV Methods
+
+  \begin{itemize}
+  \tightlist
+  \item
+    if education is correlated with \textbf{unobserved individual
+    heterogeneity}, IV methods may fail to identiy APE.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      alternative: \textbf{L}ocal \textbf{A}verage \textbf{T}reatment
+      \textbf{E}ffect.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Conditional Mean Independence}
+\protect\hypertarget{conditional-mean-independence}{}
+
+According to Wooldridge (2004, pg. 7), \textbf{APE} is identified by:
+\[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)\]
+\[E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
+a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
+
+TODO: add interpretation of assumptions
+
+\end{frame}
+
+\begin{frame}{Estimator for \(\beta\) and GLM}
+\protect\hypertarget{estimator-for-beta-and-glm}{}
+
+\[
+\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
+\hat{Var}(S_i \mid X_i)\right)
+\]
+
+\[E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid ) = \sigma^2e^{\gamma X_i}
+\] Where \(\sigma^2\) can be consistently estimated by the mean of
+squared Pearson residuals and standard errors are bootstrapped.
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Control Function Approach}
+\protect\hypertarget{control-function-approach}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Based on proposition by Garen (1984).
+\item
+  Similar to Heckman two-step estimator.
+\item
+  Models schooling choice explicitly in first step
+\item
+  CF approach can identify APE in heterogeneus returns while standard IV
+  approach may not.
+\end{itemize}
+
+First stage: modellation of schooling choice
+
+\[S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0\]
+where:
+
+\begin{itemize}
+\item
+  \(X_i\) and \(Z_i\) influence the educational decision.
+\item
+  \(v_i\): Error term incorporating unobserved determinants of education
+  choice.
+\item
+  \(Z_i\): Exclusion restriction (instrument).
+\item
+  \(V_i\), \(\varepsilon_{ai}\) and \(\varepsilon_{bi}\) are normally
+  distributed with zero means and positive variances.
+\item
+  possible correlation between error terms
+\item
+  \(v_i\) is positive if an individual acquires higher education than
+  expected conditional on observed characteristics
+\end{itemize}
+
+Second step: augmented wage equation
+\[\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
+\] where:
+
+\begin{itemize}
+\item
+  \(\gamma_1 v_i\) and \(\gamma_2\) are the \textbf{control functions}
+
+  \begin{itemize}
+  \item
+    \(\gamma_1 = cov(\varepsilon_{ai}, v_i) /var(v_i)\)
+  \item
+    \(\gamma_2 = cov(\varepsilon_{bi}, v_i) /var(v_i)\)
+  \end{itemize}
+\item
+  \(E(w_i \mid X_i, S_i, v_i) = 0\) (as shown in Heckman / Robb, 1985)
+\end{itemize}
+
+Interpretation of the coefficients of the control functions -
+\(\gamma_1\) measures the effect of those unobserved factors that led to
+over- or under-achievement in education on the wage - Thus, if
+\(\gamma_1\) is positive, the unobserved factors affect schooling
+\emph{and} wages positively - \(\gamma_2\) describes how this effect
+changes with increasing levels of education - Positive coefficient would
+indicate that those with unexpected educational ``over-achievement''
+tend to earn higher wages
+
+TODO: intuition for CF approach
+
+\end{frame}
+
+\hypertarget{replication-results}{%
+\section{Replication results}\label{replication-results}}
+
+\hypertarget{section}{%
+\subsection{}\label{section}}
+
+\begin{frame}{Set-up}
+\protect\hypertarget{set-up}{}
+
+\begin{itemize}
+\tightlist
+\item
+  We use the same sample: West Germans (not foreign-born or
+  self-employed) between 25 \& 60 years who work full-time
+\item
+  We have less observations than Gebel \& Pfeiffer (2010) per survey
+  year after we delete all observations with missing values
+\item
+  Yet, we extend the observation period until 2016
+\item
+  Three estimation methods: OLS, CMI \& CF
+\item
+  We are not able to replicate the estimation results of Gebel \&
+  Pfeiffer (2010) exactly, yet the trend / shape is similar
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Results}
+\protect\hypertarget{results}{}
+
+\begin{itemize}
+\item
+  i'm not so sure how to add images / tables here but in the new do-file
+  link \url{https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G} you can
+  just save the graph with all 3 approaches
+\item
+  \& then display on the other side the same graph from GP(2010, p.35)
+\item
+  also: here is a table with the our \& GP estimates for comparisons -
+  your bootstrapped standard errors are already included
+\end{itemize}
+
+\url{https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj}
+
+\end{frame}
+
+\begin{frame}{Estimated returns on education}
+\protect\hypertarget{estimated-returns-on-education}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Estimates from OLS \& CMI are similar, yet, CMI produces lower
+  estimates which points to a positive self-selection bias
+\item
+  Generally, CF estimates are much more volatile and less precise
+\end{itemize}
+
+Differences between replicated \& original estimations - Our OLS
+estimates are on average larger than those of Gebel \& Pfeiffer (2010)
+by 0.004 percentage points - Our CMI estimates are on average larger
+than those of Gebel \& Pfeiffer (2010) by 0.002 percentage points (first
+years lower, than larger) - Our CF estimates are on average
+significantly larger by 0.032 percentage points, though the divergence
+gets smaller from 2000 onwards
+
+\end{frame}
+
+\begin{frame}{Control function estimates}
+\protect\hypertarget{control-function-estimates}{}
+
+Instrumental variable in first stage - \emph{number of siblings} is
+significant at the 0.1\% level for all years - as expected, the number
+of siblings has a negative impact on the years of schooling (the
+estimates range between -0.13 \& -0.23) - We would assume that the
+instrument does not directly affect the error term in the wage equation
+
+Coefficients of the control functions - \(\gamma_1\)
+
+\end{frame}
+
+\begin{frame}{Explanations for divergences between replication and Gebel
+\& Pfeiffer (2010)}
+\protect\hypertarget{explanations-for-divergences-between-replication-and-gebel-pfeiffer-2010}{}
+
+\begin{itemize}
+\tightlist
+\item
+  sample not the same
+\item
+  \ldots{}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Pro's \& Con's of estimation methods}
+\protect\hypertarget{pros-cons-of-estimation-methods}{}
+
+\end{frame}
+
+\begin{frame}{The end :)}
+\protect\hypertarget{the-end}{}
+
+\end{frame}
+
+\end{document}
