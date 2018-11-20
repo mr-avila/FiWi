@@ -253,6 +253,13 @@ Differences between replicated & original estimations
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
 ### Control function estimates
+Instrumental variable in first stage
+- *number of siblings* is significant at the 0.1% level for all years
+- as expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 & -0.23)
+- We would assume that the instrument does not directly affect the error term in the wage equation
+
+Coefficients of the control functions
+- $\gamma_1$
 
 ### Explanations for divergences between replication and Gebel & Pfeiffer (2010)
 
