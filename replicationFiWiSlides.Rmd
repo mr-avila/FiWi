@@ -107,20 +107,21 @@ where $\ln Y_i$ : log of wages and $S_i$ years of schooling of individual $i$
 **slope** $b_i$ dependent on **observables** $X_i$ and **unobservables**
 $\varepsilon_{ai}$ and $\varepsilon_{bi}$.
 
-- Do not assume $b_i$ and $S_i$ are independent --> Individuals with higher
-expected benefits from education are more likely to remain longer in education
+- Does not assume that $b_i$ and $S_i$ are independent 
+--> Individuals with higher expected benefits from education are more likely to remain longer in education
 --> $b_i$ may be correlated with $S_i$ meaning positive self-selection.
 
 - focus: estimate average partial effect (APE), which is the return per
 aditional year of education for a randomly chosen individual (or averaged across
 the population)
 $$E(\partial \ln Y / \partial S) = E(b_i) = \beta$$
-Would one assume homogenous returns to education: 
+
+In case of homogenous returns to education the wage equation reduces to: 
 $$\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}$$
 - Unobserved heterogeneity may only affect the **intercept** of the wage
 equation.
 
-- still potential Endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
+- still potential endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
 
 ### Empirical Framework (Intuition) I
 
@@ -146,14 +147,14 @@ equation.
 - OLS
   - ability and "background" bias
 - IV Methods
-  - if education correlates with **unobserved individual heterogeneity**, IV methods 
+  - if education is correlated with **unobserved individual heterogeneity**, IV methods 
   may fail to identiy APE. 
     - alternative: **L**ocal **A**verage **T**reatment **E**ffect.
 
 ### Conditional Mean Independence 
 
 According to Wooldridge (2004, pg. 7), **APE** is identified by: 
-$$E \ln Y_i \mid a_i, b_i, S_i, X_i,) = E \ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
+$$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 
@@ -244,8 +245,10 @@ https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj
 
 ### Estimated returns on education
 - Estimates from OLS & CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
-- Our OLS estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.004 percentage points
 - Generally, CF estimates are much more volatile and less precise
+
+Differences between replicated & original estimations
+- Our OLS estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.004 percentage points
 - Our CMI estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
