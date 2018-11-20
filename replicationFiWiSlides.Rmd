@@ -33,20 +33,18 @@ TODO: include outline of present.
 
 ## Introduction
 
-### Summary
+### Summary of Gebel & Pfeiffer (2010)
 
-- Educational Expansion and Its Heterogeneous Returns for Wage Workers
-- by Michael Gebel and Friedhelm Pfeiffer, published on Schmollers Jahrbuch in
-2010
 - basic idea: examine evolution of returns to education in West German labour
-market. Focus on change in returns to education over time covering education
+market. 
+- Focus on change in returns to education over time as a consequence to education
 expansion in Germany.
 - methodology:
   - Wooldrigdge's (2004) **conditional mean independence**
   - Garen's (1984) **control function** approach, that requires an *exclusion
   restriction*
   - as well as OLS
-- data: SOEP 1984 2006
+- data: SOEP 1984-2006
 
 ### Data and Variables  
 
@@ -58,24 +56,32 @@ expansion in Germany.
 - Mother's ecucation 
 - Father's occupation 
 - Rural or urban household
-- Number of Siblings
+- Number of Siblings (as instrument)
 
-TODO: more detailed table?
-
+TODO: more detailed table? 
+(Comment) not necessary
 
 ### Background Information
 
-- **increase in educational attainment** in the 1960s. From 1984 to 2006, avg
-years of schooling:
+- **increase in educational attainment** in the 1960s. From 1984 to 2006, average
+years of schooling increased:
   - woman: 11.3 -> 12.8
   - men: 11.9 -> 12.9
-    (but with a shrinking gap over time.)
+  
+- **How can educational expansion affect the returns to education?**
+-	Standard theory: an increase of labor supply of high-skilled workers should decrease the returns to education
+-	High-educated workers with higher unobserved motivation / ability which positively affects wages
+-	More “less talented” accepted to higher education & thereby decreasing the average productivity levels of higher educated workers
+--> overall effect not clear
+
+  
 - unobserved characteristics leading to **selection bias**:
   - higher ability and motivation to stay longer in education
   - select jobs with expected higher returns. 
 
 ### A few a priori hypotheses 
 
+(Comment) imo not super important, could be neglected because we have enough stuff tot alk about - but nice table!
 
 | Factors affecting RtE                   | $\Uparrow$ RTE | $\Downarrow$ RTE |
 | --------------------------------------- | :------------: | :--------------: |
@@ -169,9 +175,11 @@ residuals and standard errors are bootstrapped.
 
 - Based on proposition by Garen (1984). 
 - Similar to Heckman two-step estimator.
+- Models schooling choice explicitly in first step
 - CF approach can identify APE in heterogeneus returns while standard IV
 approach may not.
 
+First stage: modellation of schooling choice
 
 $$S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0$$
 where:
@@ -180,15 +188,16 @@ where:
 
 - $v_i$: Error term incorporating unobserved determinants of education choice.
 
-- $Z_i$: Exclusion restriction.
+- $Z_i$: Exclusion restriction (instrument).
 
 - $V_i$, $\varepsilon_{ai}$ and $\varepsilon_{bi}$ are normally distributed
   with zero means and positive variances. 
-
-- possible correlation between error terms
   
+- possible correlation between error terms
+ 
+ - $v_i$ is positive if an individual acquires higher education than expected conditional on observed characteristics
 
-Augmented Wage equation:
+Second step: augmented wage equation
 $$\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
 $$
 where: 
@@ -201,14 +210,52 @@ where:
 
 - $E(w_i \mid X_i, S_i, v_i) = 0$ (as shown in Heckman / Robb, 1985)
 
+
+Interpretation of the coefficients of the control functions
+- $\gamma_1$ measures the effect of those unobserved factors that led to over- or under-achievement in education on the wage
+    - Thus, if $\gamma_1$ is positive, the unobserved factors affect schooling *and* wages positively
+- $\gamma_2$ describes how this effect changes with increasing levels of education
+    - Positive coefficient would indicate that those with unexpected educational "over-achievement" tend to earn higher wages
+
 TODO: intuition for CF approach 
 
 
 
 # Replication results
 
-## 
+##
 
-### ...
+### Set-up
 
-...
+- We use the same sample: West Germans (not foreign-born or self-employed) between 25 & 60 years who work full-time
+- We have less observations than Gebel & Pfeiffer (2010) per survey year after we delete all observations with missing values
+- Yet, we extend the observation period until 2016
+- Three estimation methods: OLS, CMI & CF
+- We are not able to replicate the estimation results of Gebel & Pfeiffer (2010) exactly, yet the trend / shape is similar
+
+### Results
+
+- i'm not so sure how to add images / tables here but in the new do-file link https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G you can just save the graph with all 3 approaches
+- & then display on the other side the same graph from GP(2010, p.35)
+
+- also: here is a table with the our & GP estimates for comparisons - your bootstrapped standard errors are already included
+
+https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj
+
+### Estimated returns on education
+- Estimates from OLS & CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
+- Our OLS estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.004 percentage points
+- Generally, CF estimates are much more volatile and less precise
+- Our CMI estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
+- Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
+
+### Control function estimates
+
+### Explanations for divergences between replication and Gebel & Pfeiffer (2010)
+
+- sample not the same
+- ...
+
+### Pro's & Con's of estimation methods
+
+### The end :)
