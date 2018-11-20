@@ -14,7 +14,7 @@ output:
       fonttheme: "structuresmallcapsserif"
       slide_level: 3
       keep_tex: true
-      fig_caption: false
+      fig_caption: yes
 header-includes:
   - \widowpenalties 1 150
   - \setbeameroption{show notes}
@@ -24,6 +24,8 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(knitr)
+library(kableExtra)
 ```
 
 
@@ -256,15 +258,15 @@ Differences between replicated & original estimations
 ### Control function estimates {.allowframebreaks}
 
 Instrumental variable in first stage
-- *number of siblings* is significant at the 0.1% level for all years
-- as expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 & -0.23)
+- *Number of siblings* is significant at the 0.1% level for all years
+- As expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 & -0.23)
 - We would assume that the instrument does not directly affect the error term in the wage equation
 
 Coefficients of the control functions
 - $\gamma_1$ is negative for majority of years, yet very small and insignificant in all years
     - Gebel & Pfeiffer (2010) estimate a positive coefficient in the 1980s and 1990s - but also insignificant
 -  $\gamma_2$ is negative and close to zero for most years
-    - indicates that those with unexpectedly high education have lower returns to education
+    - Indicates that those with unexpectedly high education have lower returns to education
     - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
     - The estimates are very similar to those of Gebel & Pfeiffer (2010)
 
@@ -277,5 +279,55 @@ Coefficients of the control functions
 
 ### Pro's & Con's of estimation methods
 
-### The end
-...
+### Results and Comparison {.allowframebreaks}
+
+```{r include=FALSE}
+dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
+dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
+dfRp <- read.csv("./tables/comparisonsRep.csv", dec=",")
+
+fontSize = 7
+```
+
+```{r}
+kable(x = dfCF,
+      format = "latex",
+      longtable = TRUE,
+      booktabs = TRUE) %>% 
+  add_header_above(c(" ", "IV: Nr. of Siblings"=2,"$v_i$"=3, "$v_i S_i$"=3 ),
+                   escape = FALSE) %>% 
+  add_header_above(c(" ", "First Stage" = 2, "Second Stage" = 6)) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = fontSize)
+```
+
+
+```{r}
+kable(x = dfGP,
+      format = "latex",
+      longtable = TRUE,
+      booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = fontSize)
+```
+
+```{r}
+kable(x = dfRp,
+      format = "latex",
+      longtable = TRUE,
+      booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = fontSize)
+
+```
+
+
+### Graphs {.allowframebreaks}
+
+
+![Original Results (GB 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
+
+![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_RepliSC.png){height="250px"}
+
+
+### The end {.allowframebreaks}

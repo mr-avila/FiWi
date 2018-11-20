@@ -4,3 +4,5 @@
 *.RData
 *.Ruserdata
 .Rproj.user
+Copy*
+.~lock*
