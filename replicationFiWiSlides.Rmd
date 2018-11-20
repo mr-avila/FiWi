@@ -6,6 +6,7 @@ title: |
 author: "Luisa Hammer and Marcelo Avila"
 date: "22 Nov 2018"
 fontsize: 10pt
+tables: yes
 output:
     beamer_presentation:
       toc: false
@@ -17,7 +18,6 @@ output:
       fig_caption: yes
 header-includes:
   - \widowpenalties 1 150
-  - \setbeameroption{show notes}
   - \newcommand{\begincols}[1]{\begin{columns}{#1}}
   - \newcommand{\stopcols}{\end{columns}}
 ---
@@ -28,12 +28,7 @@ library(knitr)
 library(kableExtra)
 ```
 
-
-TODO: include outline of present. 
-
 # Theoretical Part
-
-## Introduction
 
 ### Summary of Gebel & Pfeiffer (2010)
 
@@ -55,13 +50,14 @@ expansion in Germany.
 - Age and age squared
 - Gender 
 - Father's education
-- Mother's ecucation 
+- Mother's education 
 - Father's occupation 
 - Rural or urban household
 - Number of Siblings (as instrument)
 
 TODO: more detailed table? 
 (Comment) not necessary
+(Comment) Leave data intro when talking about the model later on?
 
 ### Background Information
 
@@ -71,35 +67,26 @@ years of schooling increased:
   - men: 11.9 -> 12.9
   
 - **How can educational expansion affect the returns to education?**
--	Standard theory: an increase of labor supply of high-skilled workers should decrease the returns to education
--	High-educated workers with higher unobserved motivation / ability which positively affects wages
--	More “less talented” accepted to higher education & thereby decreasing the average productivity levels of higher educated workers
---> overall effect not clear
 
-  
+  -	Standard theory: an increase of labor supply of high-skilled workers should
+  decrease the returns to education
+  -	High-educated workers with higher unobserved motivation / ability which
+  positively affects wages
+  -	More “less talented” accepted to higher education & thereby decreasing the
+  average productivity levels of higher educated workers --> overall effect not
+  clear
+
 - unobserved characteristics leading to **selection bias**:
   - higher ability and motivation to stay longer in education
   - select jobs with expected higher returns. 
-
-### A few a priori hypotheses 
-
-(Comment) imo not super important, could be neglected because we have enough stuff tot alk about - but nice table!
-
-| Factors affecting RtE                   | $\Uparrow$ RTE | $\Downarrow$ RTE |
-| --------------------------------------- | :------------: | :--------------: |
-| Increase in female labour participation |                |   $\checkmark$   |
-| Birth cohort sizes (Baby boom)          |                |   $\checkmark$   |
-| Wage determination processes (entrants) |                |   $\checkmark$   |
-| Skill-biased technological change       | $\checkmark$   |                  |
-
 
 
 ## Econometric Approach
 
 ### Empirical Framework (Derivation) {.allowframebreaks}
 
-The study is based on the **correlated random coefficient model** (Blundell /
-Dearden / Sianesi, 2005; Heckman / Vytlacil, 1998; Wooldridge, 2004).
+The study is based on the **correlated random coefficient model** (Wooldridge,
+2004) specified as:
 $$\ln Y_i = a_i + b_i S_i$$
 with $a_i = a'X_i + \varepsilon_{ai}$, and $b_i = b'X_i + \varepsilon_{bi}$
 
@@ -109,16 +96,17 @@ where $\ln Y_i$ : log of wages and $S_i$ years of schooling of individual $i$
 **slope** $b_i$ dependent on **observables** $X_i$ and **unobservables**
 $\varepsilon_{ai}$ and $\varepsilon_{bi}$.
 
-- Does not assume that $b_i$ and $S_i$ are independent 
---> Individuals with higher expected benefits from education are more likely to remain longer in education
---> $b_i$ may be correlated with $S_i$ meaning positive self-selection.
+- Do not assume that $b_i$ and $S_i$ are independent 
+--> Individuals with higher expected benefits from education are more likely to
+remain longer in education
+--> $b_i$ may be correlated with $S_i$ indicating positive self-selection.
 
 - focus: estimate average partial effect (APE), which is the return per
-aditional year of education for a randomly chosen individual (or averaged across
+additional year of education for a randomly chosen individual (or averaged across
 the population)
 $$E(\partial \ln Y / \partial S) = E(b_i) = \beta$$
 
-In case of homogenous returns to education the wage equation reduces to: 
+In case of homogeneous returns to education the wage equation reduces to: 
 $$\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}$$
 - Unobserved heterogeneity may only affect the **intercept** of the wage
 equation.
@@ -135,10 +123,9 @@ equation.
 
 ![](img/rcmodel002.png){width="300px"}
 
-- Multiple OLS with homogenous return to Educ 
+- Multiple OLS with homogeneous return to Educ 
 
 ### Empirical Framework (Intuition) III
-
 
 ![](img/rcmodel003.png){width="300px"}
 
@@ -149,8 +136,8 @@ equation.
 - OLS
   - ability and "background" bias
 - IV Methods
-  - if education is correlated with **unobserved individual heterogeneity**, IV methods 
-  may fail to identiy APE. 
+  - if education is correlated with **unobserved individual heterogeneity**, IV
+  methods may fail to identity APE.
     - alternative: **L**ocal **A**verage **T**reatment **E**ffect.
 
 ### Conditional Mean Independence 
@@ -164,13 +151,10 @@ TODO: add interpretation of assumptions
 
 ### Estimator for $\beta$ and GLM 
 
-$$
-\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
-\hat{Var}(S_i \mid X_i)\right)
-$$
+$$\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
+\hat{Var}(S_i \mid X_i)\right)$$
 
-$$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid ) = \sigma^2e^{\gamma X_i}
-$$
+$$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid ) = \sigma^2e^{\gamma X_i}$$
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
@@ -179,10 +163,10 @@ residuals and standard errors are bootstrapped.
 - Based on proposition by Garen (1984). 
 - Similar to Heckman two-step estimator.
 - Models schooling choice explicitly in first step
-- CF approach can identify APE in heterogeneus returns while standard IV
+- CF approach can identify APE in heterogeneous returns while standard IV
 approach may not.
 
-First stage: modellation of schooling choice
+First stage: modelling schooling choice
 
 $$S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0$$
 where:
@@ -213,7 +197,6 @@ where:
 
 - $E(w_i \mid X_i, S_i, v_i) = 0$ (as shown in Heckman / Robb, 1985)
 
-
 Interpretation of the coefficients of the control functions
 - $\gamma_1$ measures the effect of those unobserved factors that led to over- or under-achievement in education on the wage
     - Thus, if $\gamma_1$ is positive, the unobserved factors affect schooling *and* wages positively
@@ -238,7 +221,7 @@ TODO: intuition for CF approach
 
 ### Results
 
-- i'm not so sure how to add images / tables here but in the new do-file link https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G you can just save the graph with all 3 approaches
+- I'm not so sure how to add images / tables here but in the new do-file link https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G you can just save the graph with all 3 approaches
 - & then display on the other side the same graph from GP(2010, p.35)
 
 - also: here is a table with the our & GP estimates for comparisons - your bootstrapped standard errors are already included
@@ -270,7 +253,7 @@ Coefficients of the control functions
     - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
     - The estimates are very similar to those of Gebel & Pfeiffer (2010)
 
-- that both coefficients are (mostly) negative hints that educational expansion caused more “less abled” to achieve higher education
+- that both coefficients are (mostly) negative hints that educational expansion caused more “less able” to achieve higher education
 
 ### Explanations for divergences between replication and Gebel & Pfeiffer (2010)
 
@@ -279,13 +262,20 @@ Coefficients of the control functions
 
 ### Pro's & Con's of estimation methods
 
-### Results and Comparison {.allowframebreaks}
+### Results and Comparison I
+
+![Original Results (GB 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
+
+### Results and Comparison II
+
+![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_Repli.png){height="250px"}
+
+
 
 ```{r include=FALSE}
 dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
 dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
 dfRp <- read.csv("./tables/comparisonsRep.csv", dec=",")
-
 fontSize = 7
 ```
 
@@ -300,7 +290,6 @@ kable(x = dfCF,
   kable_styling(latex_options = c("repeat_header"),
                 font_size = fontSize)
 ```
-
 
 ```{r}
 kable(x = dfGP,
@@ -320,14 +309,6 @@ kable(x = dfRp,
                 font_size = fontSize)
 
 ```
-
-
-### Graphs {.allowframebreaks}
-
-
-![Original Results (GB 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
-
-![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_RepliSC.png){height="250px"}
 
 
 ### The end {.allowframebreaks}
