@@ -149,6 +149,13 @@ a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 
 TODO: add interpretation of assumptions
 
+- basically:
+
+  - $X_i$ should be good predictors of treatment $S_i$ (Wooldridge 2004, pg 7).
+  - (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$. 
+  - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
+  redundant. "Staying longer in Education is determined by $X$ covariates"
+
 ### Estimator for $\beta$ and GLM 
 
 $$\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
@@ -261,6 +268,11 @@ Coefficients of the control functions
 - ...
 
 ### Pro's & Con's of estimation methods
+
+- CMI
+
+- CF
+  - requires further distributional assumptions on error terms
 
 ### Results and Comparison I
 
