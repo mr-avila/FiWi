@@ -9,6 +9,7 @@ fontsize: 10pt
 tables: yes
 output:
     beamer_presentation:
+      latex_engine: xelatex
       toc: false
       theme: "Luebeck"
       colortheme: "whale"
@@ -30,7 +31,9 @@ library(kableExtra)
 
 # Theoretical Part
 
-### Summary of Gebel & Pfeiffer (2010)
+TODO: add outline
+
+### Summary of Gebel and Pfeiffer (2010)
 
 - basic idea: examine evolution of returns to education in West German labour
 market. 
@@ -43,21 +46,6 @@ expansion in Germany.
   - as well as OLS
 - data: SOEP 1984-2006
 
-### Data and Variables  
-
-- Log of hourly wage
-- Years of education (constructed from categorical variable)
-- Age and age squared
-- Gender 
-- Father's education
-- Mother's education 
-- Father's occupation 
-- Rural or urban household
-- Number of Siblings (as instrument)
-
-TODO: more detailed table? 
-(Comment) not necessary
-(Comment) Leave data intro when talking about the model later on?
 
 ### Background Information
 
@@ -72,13 +60,13 @@ years of schooling increased:
   decrease the returns to education
   -	High-educated workers with higher unobserved motivation / ability which
   positively affects wages
-  -	More “less talented” accepted to higher education & thereby decreasing the
+  -	More “less talented” accepted to higher education and thereby decreasing the
   average productivity levels of higher educated workers --> overall effect not
   clear
 
 - unobserved characteristics leading to **selection bias**:
-  - higher ability and motivation to stay longer in education
-  - select jobs with expected higher returns. 
+  - higher ability and motivation to stay longer in education.
+  - select jobs with higher expected returns. 
 
 
 ## Econometric Approach
@@ -140,6 +128,7 @@ equation.
   methods may fail to identity APE.
     - alternative: **L**ocal **A**verage **T**reatment **E**ffect.
 
+
 ### Conditional Mean Independence 
 
 According to Wooldridge (2004, pg. 7), **APE** is identified by: 
@@ -147,33 +136,32 @@ $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 
-TODO: add interpretation of assumptions
 
-- basically:
-
-  - $X_i$ should be good predictors of treatment $S_i$ (Wooldridge 2004, pg 7).
-  - (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$. 
-  - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
-  redundant. "Staying longer in Education is determined by $X$ covariates"
+- $X_i$ should be good predictors of treatment $S_i$ (Wooldridge 2004, pg 7).
+- (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$ and $S_i$. 
+- (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
+  redundant. "Staying longer in Education is determined by $X$ covariates".
 
 ### Estimator for $\beta$ and GLM 
+
+The **APE** can be estimated by:
 
 $$\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
 \hat{Var}(S_i \mid X_i)\right)$$
 
-$$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid ) = \sigma^2e^{\gamma X_i}$$
+$$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigma^2e^{\gamma X_i}$$
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
 ### Control Function Approach {.allowframebreaks}
 
 - Based on proposition by Garen (1984). 
-- Similar to Heckman two-step estimator.
-- Models schooling choice explicitly in first step
 - CF approach can identify APE in heterogeneous returns while standard IV
 approach may not.
+- Similar to Heckman two-step estimator.
+- Models schooling choice explicitly in first step
 
-First stage: modelling schooling choice
+**First stage**: modelling schooling choice
 
 $$S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0$$
 where:
@@ -184,19 +172,17 @@ where:
 
 - $Z_i$: Exclusion restriction (instrument).
 
-- $V_i$, $\varepsilon_{ai}$ and $\varepsilon_{bi}$ are normally distributed
-  with zero means and positive variances. 
-  
-- possible correlation between error terms
+- $v_i$, $\varepsilon_{ai}$ and $\varepsilon_{bi}$ are normally distributed
+  with zero means and positive variances, that are possibly correlated
  
  - $v_i$ is positive if an individual acquires higher education than expected conditional on observed characteristics
 
-Second step: augmented wage equation
+**Second stage**: augmented wage equation
 $$\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
 $$
 where: 
 
-- $\gamma_1 v_i$ and $\gamma_2$ are the **control functions**
+- $\gamma_1$ and $\gamma_2$ are the **control functions**
   
   - $\gamma_1 = cov(\varepsilon_{ai}, v_i) /var(v_i)$
   
@@ -204,84 +190,88 @@ where:
 
 - $E(w_i \mid X_i, S_i, v_i) = 0$ (as shown in Heckman / Robb, 1985)
 
+
+### Control Function Approach III
+
 Interpretation of the coefficients of the control functions
+
 - $\gamma_1$ measures the effect of those unobserved factors that led to over- or under-achievement in education on the wage
     - Thus, if $\gamma_1$ is positive, the unobserved factors affect schooling *and* wages positively
 - $\gamma_2$ describes how this effect changes with increasing levels of education
     - Positive coefficient would indicate that those with unexpected educational "over-achievement" tend to earn higher wages
 
-TODO: intuition for CF approach 
 
+# Replication
 
+### codes
 
-# Replication results
-
-##
+```
+*** Generalized linear regression model with Poisson distribution
+	glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
+```
+TODO: play with codes
 
 ### Set-up
 
-- We use the same sample: West Germans (not foreign-born or self-employed) between 25 & 60 years who work full-time
-- We have less observations than Gebel & Pfeiffer (2010) per survey year after we delete all observations with missing values
+- We use the same sample: West Germans (not foreign-born or self-employed) between 25 and 60 years who work full-time
+- We have less observations than Gebel and Pfeiffer (2010) per survey year after we delete all observations with missing values
 - Yet, we extend the observation period until 2016
-- Three estimation methods: OLS, CMI & CF
-- We are not able to replicate the estimation results of Gebel & Pfeiffer (2010) exactly, yet the trend / shape is similar
+- Three estimation methods: OLS, CMI  CF
+- control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
+
+## Results
 
 ### Results
 
 - I'm not so sure how to add images / tables here but in the new do-file link https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G you can just save the graph with all 3 approaches
-- & then display on the other side the same graph from GP(2010, p.35)
+- and then display on the other side the same graph from GP(2010, p.35)
 
-- also: here is a table with the our & GP estimates for comparisons - your bootstrapped standard errors are already included
+- also: here is a table with the our and GP estimates for comparisons - your bootstrapped standard errors are already included
 
 https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj
 
 ### Estimated returns on education
 
-- Estimates from OLS & CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
+- Estimates from OLS and CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
 - Generally, CF estimates are much more volatile and less precise
 
-Differences between replicated & original estimations
-- Our OLS estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.004 percentage points
-- Our CMI estimates are on average larger than those of Gebel & Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
+Differences between replicated and original estimations
+- Our OLS estimates are on average larger than those of Gebel and Pfeiffer (2010) by 0.004 percentage points
+- Our CMI estimates are on average larger than those of Gebel and Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
 ### Control function estimates {.allowframebreaks}
 
 Instrumental variable in first stage
+
 - *Number of siblings* is significant at the 0.1% level for all years
-- As expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 & -0.23)
+- As expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 and -0.23)
 - We would assume that the instrument does not directly affect the error term in the wage equation
 
 Coefficients of the control functions
+
 - $\gamma_1$ is negative for majority of years, yet very small and insignificant in all years
-    - Gebel & Pfeiffer (2010) estimate a positive coefficient in the 1980s and 1990s - but also insignificant
+    - Gebel and Pfeiffer (2010) estimate a positive coefficient in the 1980s and 1990s - but also insignificant
 -  $\gamma_2$ is negative and close to zero for most years
     - Indicates that those with unexpectedly high education have lower returns to education
     - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
-    - The estimates are very similar to those of Gebel & Pfeiffer (2010)
+    - The estimates are very similar to those of Gebel and Pfeiffer (2010)
 
 - that both coefficients are (mostly) negative hints that educational expansion caused more “less able” to achieve higher education
 
-### Explanations for divergences between replication and Gebel & Pfeiffer (2010)
+### Explanations for divergences between replication and Gebel and Pfeiffer (2010)
 
 - sample not the same
 - ...
 
-### Pro's & Con's of estimation methods
-
-- CMI
-
-- CF
-  - requires further distributional assumptions on error terms
 
 ### Results and Comparison I
 
-![Original Results (GB 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
+![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
 
 ### Results and Comparison II
 
 ![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_Repli.png){height="250px"}
-
 
 
 ```{r include=FALSE}
@@ -291,11 +281,21 @@ dfRp <- read.csv("./tables/comparisonsRep.csv", dec=",")
 fontSize = 7
 ```
 
+
+### Results: Control Function (replication)
 ```{r}
-kable(x = dfCF,
+names(dfCF) <- c("year", "coef.", "s.e.",
+                 "coef.", "s.e.", "p", 
+                 "coef.", "s.e.", "p")
+
+```
+
+```{r}
+kable(x = head(dfCF, 14),
       format = "latex",
       longtable = TRUE,
-      booktabs = TRUE) %>% 
+      booktabs = TRUE,
+      escape = F) %>% 
   add_header_above(c(" ", "IV: Nr. of Siblings"=2,"$v_i$"=3, "$v_i S_i$"=3 ),
                    escape = FALSE) %>% 
   add_header_above(c(" ", "First Stage" = 2, "Second Stage" = 6)) %>% 
@@ -303,7 +303,9 @@ kable(x = dfCF,
                 font_size = fontSize)
 ```
 
-```{r}
+### Results: Control Function (replication)
+
+```{r eval=FALSE, include=FALSE}
 kable(x = dfGP,
       format = "latex",
       longtable = TRUE,
@@ -312,7 +314,7 @@ kable(x = dfGP,
                 font_size = fontSize)
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 kable(x = dfRp,
       format = "latex",
       longtable = TRUE,
@@ -322,5 +324,18 @@ kable(x = dfRp,
 
 ```
 
+### Pro's and Con's of estimation methods
+
+- CMI
+  - no analytical standard errors
+
+- CF
+  - requires further distributional assumptions on error terms
+  - valid and relevant "instrument"
+
+
 
 ### The end {.allowframebreaks}
+
+TODO: add 
+

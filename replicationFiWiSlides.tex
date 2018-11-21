@@ -117,8 +117,10 @@ Michael Gebel and Friedhelm Pfeiffer}
 \hypertarget{theoretical-part}{%
 \section{Theoretical Part}\label{theoretical-part}}
 
-\begin{frame}{Summary of Gebel \& Pfeiffer (2010)}
-\protect\hypertarget{summary-of-gebel-pfeiffer-2010}{}
+TODO: add outline
+
+\begin{frame}{Summary of Gebel and Pfeiffer (2010)}
+\protect\hypertarget{summary-of-gebel-and-pfeiffer-2010}{}
 
 \begin{itemize}
 \tightlist
@@ -144,36 +146,6 @@ Michael Gebel and Friedhelm Pfeiffer}
 \item
   data: SOEP 1984-2006
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Data and Variables}
-\protect\hypertarget{data-and-variables}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Log of hourly wage
-\item
-  Years of education (constructed from categorical variable)
-\item
-  Age and age squared
-\item
-  Gender
-\item
-  Father's education
-\item
-  Mother's education
-\item
-  Father's occupation
-\item
-  Rural or urban household
-\item
-  Number of Siblings (as instrument)
-\end{itemize}
-
-TODO: more detailed table? (Comment) not necessary (Comment) Leave data
-intro when talking about the model later on?
 
 \end{frame}
 
@@ -205,7 +177,7 @@ intro when talking about the model later on?
     High-educated workers with higher unobserved motivation / ability
     which positively affects wages
   \item
-    More ``less talented'' accepted to higher education \& thereby
+    More ``less talented'' accepted to higher education and thereby
     decreasing the average productivity levels of higher educated
     workers --\textgreater{} overall effect not clear
   \end{itemize}
@@ -215,9 +187,9 @@ intro when talking about the model later on?
   \begin{itemize}
   \tightlist
   \item
-    higher ability and motivation to stay longer in education
+    higher ability and motivation to stay longer in education.
   \item
-    select jobs with expected higher returns.
+    select jobs with higher expected returns.
   \end{itemize}
 \end{itemize}
 
@@ -350,24 +322,17 @@ According to Wooldridge (2004, pg. 7), \textbf{APE} is identified by:
 \[E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
 
-TODO: add interpretation of assumptions
-
 \begin{itemize}
+\tightlist
 \item
-  basically:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \(X_i\) should be good predictors of treatment \(S_i\) (Wooldridge
-    2004, pg 7).
-  \item
-    (A.1): Redundancy of \(X_i\) given \(a_i\) and \(b_i\).
-  \item
-    (A.2): In the first two conditional moments of \(S_i\), \(a_i\) and
-    \(b_i\) are redundant. ``Staying longer in Education is determined
-    by \(X\) covariates''
-  \end{itemize}
+  \(X_i\) should be good predictors of treatment \(S_i\) (Wooldridge
+  2004, pg 7).
+\item
+  (A.1): Redundancy of \(X_i\) given \(a_i\) and \(b_i\) and \(S_i\).
+\item
+  (A.2): In the first two conditional moments of \(S_i\), \(a_i\) and
+  \(b_i\) are redundant. ``Staying longer in Education is determined by
+  \(X\) covariates''.
 \end{itemize}
 
 \end{frame}
@@ -375,10 +340,12 @@ TODO: add interpretation of assumptions
 \begin{frame}{Estimator for \(\beta\) and GLM}
 \protect\hypertarget{estimator-for-beta-and-glm}{}
 
+The \textbf{APE} can be estimated by:
+
 \[\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
 \hat{Var}(S_i \mid X_i)\right)\]
 
-\[E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid ) = \sigma^2e^{\gamma X_i}\]
+\[E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigma^2e^{\gamma X_i}\]
 Where \(\sigma^2\) can be consistently estimated by the mean of squared
 Pearson residuals and standard errors are bootstrapped.
 
@@ -392,15 +359,15 @@ Pearson residuals and standard errors are bootstrapped.
 \item
   Based on proposition by Garen (1984).
 \item
+  CF approach can identify APE in heterogeneous returns while standard
+  IV approach may not.
+\item
   Similar to Heckman two-step estimator.
 \item
   Models schooling choice explicitly in first step
-\item
-  CF approach can identify APE in heterogeneous returns while standard
-  IV approach may not.
 \end{itemize}
 
-First stage: modelling schooling choice
+\textbf{First stage}: modelling schooling choice
 
 \[S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0\]
 where:
@@ -414,22 +381,21 @@ where:
 \item
   \(Z_i\): Exclusion restriction (instrument).
 \item
-  \(V_i\), \(\varepsilon_{ai}\) and \(\varepsilon_{bi}\) are normally
-  distributed with zero means and positive variances.
-\item
-  possible correlation between error terms
+  \(v_i\), \(\varepsilon_{ai}\) and \(\varepsilon_{bi}\) are normally
+  distributed with zero means and positive variances, that are possibly
+  correlated
 \item
   \(v_i\) is positive if an individual acquires higher education than
   expected conditional on observed characteristics
 \end{itemize}
 
-Second step: augmented wage equation
+\textbf{Second stage}: augmented wage equation
 \[\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
 \] where:
 
 \begin{itemize}
 \item
-  \(\gamma_1 v_i\) and \(\gamma_2\) are the \textbf{control functions}
+  \(\gamma_1\) and \(\gamma_2\) are the \textbf{control functions}
 
   \begin{itemize}
   \item
@@ -441,24 +407,53 @@ Second step: augmented wage equation
   \(E(w_i \mid X_i, S_i, v_i) = 0\) (as shown in Heckman / Robb, 1985)
 \end{itemize}
 
-Interpretation of the coefficients of the control functions -
-\(\gamma_1\) measures the effect of those unobserved factors that led to
-over- or under-achievement in education on the wage - Thus, if
-\(\gamma_1\) is positive, the unobserved factors affect schooling
-\emph{and} wages positively - \(\gamma_2\) describes how this effect
-changes with increasing levels of education - Positive coefficient would
-indicate that those with unexpected educational ``over-achievement''
-tend to earn higher wages
+\end{frame}
 
-TODO: intuition for CF approach
+\begin{frame}{Control Function Approach III}
+\protect\hypertarget{control-function-approach-iii}{}
+
+Interpretation of the coefficients of the control functions
+
+\begin{itemize}
+\tightlist
+\item
+  \(\gamma_1\) measures the effect of those unobserved factors that led
+  to over- or under-achievement in education on the wage
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Thus, if \(\gamma_1\) is positive, the unobserved factors affect
+    schooling \emph{and} wages positively
+  \end{itemize}
+\item
+  \(\gamma_2\) describes how this effect changes with increasing levels
+  of education
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Positive coefficient would indicate that those with unexpected
+    educational ``over-achievement'' tend to earn higher wages
+  \end{itemize}
+\end{itemize}
 
 \end{frame}
 
-\hypertarget{replication-results}{%
-\section{Replication results}\label{replication-results}}
+\hypertarget{replication}{%
+\section{Replication}\label{replication}}
 
-\hypertarget{section}{%
-\subsection{}\label{section}}
+\begin{frame}[fragile]{codes}
+\protect\hypertarget{codes}{}
+
+\begin{verbatim}
+*** Generalized linear regression model with Poisson distribution
+    glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
+\end{verbatim}
+
+TODO: play with codes
+
+\end{frame}
 
 \begin{frame}{Set-up}
 \protect\hypertarget{set-up}{}
@@ -467,23 +462,27 @@ TODO: intuition for CF approach
 \tightlist
 \item
   We use the same sample: West Germans (not foreign-born or
-  self-employed) between 25 \& 60 years who work full-time
+  self-employed) between 25 and 60 years who work full-time
 \item
-  We have less observations than Gebel \& Pfeiffer (2010) per survey
+  We have less observations than Gebel and Pfeiffer (2010) per survey
   year after we delete all observations with missing values
 \item
   Yet, we extend the observation period until 2016
 \item
-  Three estimation methods: OLS, CMI \& CF
+  Three estimation methods: OLS, CMI CF
 \item
-  We are not able to replicate the estimation results of Gebel \&
-  Pfeiffer (2010) exactly, yet the trend / shape is similar
+  control variables: age and age squared, gender, father's education,
+  mother's education, father's occupation, rural or urban household,
+  number of siblings (as instrument)
 \end{itemize}
 
 \end{frame}
 
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
 \begin{frame}{Results}
-\protect\hypertarget{results}{}
+\protect\hypertarget{results-1}{}
 
 \begin{itemize}
 \item
@@ -491,9 +490,9 @@ TODO: intuition for CF approach
   link \url{https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G} you can
   just save the graph with all 3 approaches
 \item
-  \& then display on the other side the same graph from GP(2010, p.35)
+  and then display on the other side the same graph from GP(2010, p.35)
 \item
-  also: here is a table with the our \& GP estimates for comparisons -
+  also: here is a table with the our and GP estimates for comparisons -
   your bootstrapped standard errors are already included
 \end{itemize}
 
@@ -507,17 +506,17 @@ TODO: intuition for CF approach
 \begin{itemize}
 \tightlist
 \item
-  Estimates from OLS \& CMI are similar, yet, CMI produces lower
+  Estimates from OLS and CMI are similar, yet, CMI produces lower
   estimates which points to a positive self-selection bias
 \item
   Generally, CF estimates are much more volatile and less precise
 \end{itemize}
 
-Differences between replicated \& original estimations - Our OLS
-estimates are on average larger than those of Gebel \& Pfeiffer (2010)
+Differences between replicated and original estimations - Our OLS
+estimates are on average larger than those of Gebel and Pfeiffer (2010)
 by 0.004 percentage points - Our CMI estimates are on average larger
-than those of Gebel \& Pfeiffer (2010) by 0.002 percentage points (first
-years lower, than larger) - Our CF estimates are on average
+than those of Gebel and Pfeiffer (2010) by 0.002 percentage points
+(first years lower, than larger) - Our CF estimates are on average
 significantly larger by 0.032 percentage points, though the divergence
 gets smaller from 2000 onwards
 
@@ -526,24 +525,49 @@ gets smaller from 2000 onwards
 \begin{frame}[allowframebreaks]{Control function estimates}
 \protect\hypertarget{control-function-estimates}{}
 
-Instrumental variable in first stage - \emph{Number of siblings} is
-significant at the 0.1\% level for all years - As expected, the number
-of siblings has a negative impact on the years of schooling (the
-estimates range between -0.13 \& -0.23) - We would assume that the
-instrument does not directly affect the error term in the wage equation
-
-Coefficients of the control functions - \(\gamma_1\) is negative for
-majority of years, yet very small and insignificant in all years - Gebel
-\& Pfeiffer (2010) estimate a positive coefficient in the 1980s and
-1990s - but also insignificant - \(\gamma_2\) is negative and close to
-zero for most years - Indicates that those with unexpectedly high
-education have lower returns to education - Similarly, they are only
-slightly significant in the 1980s, and stronger significant in the early
-2000s - The estimates are very similar to those of Gebel \& Pfeiffer
-(2010)
+Instrumental variable in first stage
 
 \begin{itemize}
 \tightlist
+\item
+  \emph{Number of siblings} is significant at the 0.1\% level for all
+  years
+\item
+  As expected, the number of siblings has a negative impact on the years
+  of schooling (the estimates range between -0.13 and -0.23)
+\item
+  We would assume that the instrument does not directly affect the error
+  term in the wage equation
+\end{itemize}
+
+Coefficients of the control functions
+
+\begin{itemize}
+\tightlist
+\item
+  \(\gamma_1\) is negative for majority of years, yet very small and
+  insignificant in all years
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Gebel and Pfeiffer (2010) estimate a positive coefficient in the
+    1980s and 1990s - but also insignificant
+  \end{itemize}
+\item
+  \(\gamma_2\) is negative and close to zero for most years
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Indicates that those with unexpectedly high education have lower
+    returns to education
+  \item
+    Similarly, they are only slightly significant in the 1980s, and
+    stronger significant in the early 2000s
+  \item
+    The estimates are very similar to those of Gebel and Pfeiffer (2010)
+  \end{itemize}
 \item
   that both coefficients are (mostly) negative hints that educational
   expansion caused more ``less able'' to achieve higher education
@@ -552,8 +576,8 @@ slightly significant in the 1980s, and stronger significant in the early
 \end{frame}
 
 \begin{frame}{Explanations for divergences between replication and Gebel
-\& Pfeiffer (2010)}
-\protect\hypertarget{explanations-for-divergences-between-replication-and-gebel-pfeiffer-2010}{}
+and Pfeiffer (2010)}
+\protect\hypertarget{explanations-for-divergences-between-replication-and-gebel-and-pfeiffer-2010}{}
 
 \begin{itemize}
 \tightlist
@@ -565,31 +589,13 @@ slightly significant in the 1980s, and stronger significant in the early
 
 \end{frame}
 
-\begin{frame}{Pro's \& Con's of estimation methods}
-\protect\hypertarget{pros-cons-of-estimation-methods}{}
-
-\begin{itemize}
-\item
-  CMI
-\item
-  CF
-
-  \begin{itemize}
-  \tightlist
-  \item
-    requires further distributional assumptions on error terms
-  \end{itemize}
-\end{itemize}
-
-\end{frame}
-
 \begin{frame}{Results and Comparison I}
 \protect\hypertarget{results-and-comparison-i}{}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,height=2.60417in]{img/OLS_CMI_CF_GB2010.png}
-\caption{Original Results (GB 2010, pg.30)}
+\caption{Original Results (GP 2010, pg.30)}
 \end{figure}
 
 \end{frame}
@@ -604,6 +610,11 @@ slightly significant in the 1980s, and stronger significant in the early
 approaches}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}{Results: Control Function (replication)}
+\protect\hypertarget{results-control-function-replication}{}
+
 \begingroup\fontsize{7}{9}\selectfont
 
 \begin{longtable}{rrrrrrrrr}
@@ -612,7 +623,7 @@ approaches}
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-9}
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{IV: Nr. of Siblings} & \multicolumn{3}{c}{$v_i$} & \multicolumn{3}{c}{$v_i S_i$} \\
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-6} \cmidrule(l{2pt}r{2pt}){7-9}
-year & coeff & s.e. & coeff.1 & s.e..1 & p & coeff.2 & s.e..2 & p.1\\
+year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \midrule
 \endfirsthead
 \multicolumn{9}{@{}l}{\textit{(continued)}}\\
@@ -621,7 +632,7 @@ year & coeff & s.e. & coeff.1 & s.e..1 & p & coeff.2 & s.e..2 & p.1\\
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-9}
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{IV: Nr. of Siblings} & \multicolumn{3}{c}{$v_i$} & \multicolumn{3}{c}{$v_i S_i$} \\
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-6} \cmidrule(l{2pt}r{2pt}){7-9}
-year & coeff & s.e. & coeff.1 & s.e..1 & p & coeff.2 & s.e..2 & p.1\\
+year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \midrule
 \endhead
 \
@@ -643,138 +654,49 @@ year & coeff & s.e. & coeff.1 & s.e..1 & p & coeff.2 & s.e..2 & p.1\\
 1994 & -0.176 & 0.034 & -0.035 & 0.029 & 0.233 & -0.001 & 0.001 & 0.225\\
 1995 & -0.172 & 0.036 & -0.026 & 0.032 & 0.422 & -0.002 & 0.001 & 0.077\\
 1996 & -0.195 & 0.037 & -0.015 & 0.031 & 0.624 & -0.003 & 0.001 & 0.058\\
-1997 & -0.214 & 0.038 & -0.030 & 0.027 & 0.268 & -0.002 & 0.001 & 0.225\\
-1998 & -0.200 & 0.036 & -0.049 & 0.028 & 0.076 & 0.000 & 0.001 & 0.866\\
-\addlinespace
-1999 & -0.219 & 0.036 & -0.029 & 0.027 & 0.282 & -0.001 & 0.001 & 0.559\\
-2000 & -0.211 & 0.028 & -0.010 & 0.024 & 0.669 & -0.002 & 0.001 & 0.057\\
-2001 & -0.191 & 0.027 & -0.007 & 0.023 & 0.769 & -0.002 & 0.001 & 0.021\\
-2002 & -0.222 & 0.029 & 0.005 & 0.023 & 0.819 & -0.004 & 0.001 & 0.001\\
-2003 & -0.209 & 0.029 & 0.016 & 0.024 & 0.499 & -0.005 & 0.001 & 0.000\\
-\addlinespace
-2004 & -0.228 & 0.029 & -0.025 & 0.024 & 0.298 & -0.003 & 0.001 & 0.006\\
-2005 & -0.205 & 0.030 & -0.027 & 0.026 & 0.312 & -0.002 & 0.001 & 0.170\\
-2006 & -0.213 & 0.030 & -0.032 & 0.026 & 0.221 & -0.002 & 0.001 & 0.107\\
-2007 & -0.222 & 0.030 & -0.015 & 0.025 & 0.536 & -0.003 & 0.001 & 0.008\\
-2008 & -0.226 & 0.031 & -0.048 & 0.027 & 0.082 & -0.002 & 0.001 & 0.149\\
-\addlinespace
-2009 & -0.206 & 0.031 & -0.026 & 0.028 & 0.343 & -0.004 & 0.001 & 0.004\\
-2010 & -0.222 & 0.034 & -0.020 & 0.028 & 0.473 & -0.003 & 0.001 & 0.023\\
-2011 & -0.215 & 0.032 & -0.029 & 0.028 & 0.297 & -0.004 & 0.001 & 0.001\\
-2012 & -0.228 & 0.034 & 0.020 & 0.027 & 0.471 & -0.005 & 0.001 & 0.000\\
-2013 & -0.224 & 0.033 & -0.005 & 0.028 & 0.857 & -0.003 & 0.001 & 0.017\\
-\addlinespace
-2014 & -0.238 & 0.035 & 0.015 & 0.028 & 0.579 & -0.003 & 0.001 & 0.038\\
-2015 & -0.216 & 0.037 & -0.020 & 0.031 & 0.519 & -0.003 & 0.001 & 0.037\\
-2016 & -0.212 & 0.038 & 0.027 & 0.034 & 0.423 & -0.003 & 0.001 & 0.037\\*
+1997 & -0.214 & 0.038 & -0.030 & 0.027 & 0.268 & -0.002 & 0.001 & 0.225\\*
 \end{longtable}\endgroup{}
 
-\begingroup\fontsize{7}{9}\selectfont
+\end{frame}
 
-\begin{longtable}{rrrrrrrl}
-\toprule
-year & OLS & OLS.se & CMI & CMI\_se & CF & CF\_se & obs\\
-\midrule
-\endfirsthead
-\multicolumn{8}{@{}l}{\textit{(continued)}}\\
-\toprule
-year & OLS & OLS.se & CMI & CMI\_se & CF & CF\_se & obs\\
-\midrule
-\endhead
-\
-\endfoot
-\bottomrule
-\endlastfoot
-1984 & 0.074 & 0.004 & 0.066 & 0.004 & 0.075 & 0.079 & 1.545\\
-1985 & 0.065 & 0.004 & 0.059 & 0.004 & 0.032 & 0.131 & 1.600\\
-1986 & 0.069 & 0.004 & 0.061 & 0.004 & 0.077 & 0.091 & 1.682\\
-1987 & 0.070 & 0.004 & 0.063 & 0.004 & 0.090 & 0.048 & 1.775\\
-1988 & 0.069 & 0.004 & 0.065 & 0.004 & 0.081 & 0.041 & 1.798\\
-\addlinespace
-1989 & 0.067 & 0.003 & 0.063 & 0.004 & 0.067 & 0.038 & 1.922\\
-1990 & 0.063 & 0.003 & 0.059 & 0.004 & 0.048 & 0.031 & 2.007\\
-1991 & 0.062 & 0.003 & 0.060 & 0.004 & 0.037 & 0.030 & 2.122\\
-1992 & 0.064 & 0.003 & 0.057 & 0.004 & 0.049 & 0.027 & 2.107\\
-1993 & 0.060 & 0.003 & 0.057 & 0.004 & 0.062 & 0.026 & 2.124\\
-\addlinespace
-1994 & 0.057 & 0.003 & 0.051 & 0.004 & 0.055 & 0.022 & 2.082\\
-1995 & 0.058 & 0.003 & 0.053 & 0.004 & 0.064 & 0.024 & 2.075\\
-1996 & 0.055 & 0.003 & 0.049 & 0.004 & 0.054 & 0.025 & 2.057\\
-1997 & 0.057 & 0.003 & 0.054 & 0.003 & 0.074 & 0.025 & 2.011\\
-1998 & 0.054 & 0.003 & 0.049 & 0.003 & 0.053 & 0.021 & 2.145\\
-\addlinespace
-1999 & 0.058 & 0.003 & 0.054 & 0.003 & 0.072 & 0.023 & 2.163\\
-2000 & 0.065 & 0.002 & 0.059 & 0.003 & 0.108 & 0.024 & 3.965\\
-2001 & 0.065 & 0.002 & 0.062 & 0.003 & 0.097 & 0.022 & 3.961\\
-2002 & 0.068 & 0.003 & 0.066 & 0.003 & 0.106 & 0.030 & 3.668\\
-2003 & 0.064 & 0.003 & 0.062 & 0.003 & 0.123 & 0.028 & 3.476\\
-\addlinespace
-2004 & 0.064 & 0.003 & 0.062 & 0.003 & 0.115 & 0.030 & 3.366\\
-2005 & 0.065 & 0.003 & 0.064 & 0.003 & 0.113 & 0.032 & 3.220\\
-2006 & 0.064 & 0.003 & 0.063 & 0.003 & 0.133 & 0.033 & 3.477\\*
-\end{longtable}\endgroup{}
+\begin{frame}{Results: Control Function (replication)}
+\protect\hypertarget{results-control-function-replication-1}{}
 
-\begingroup\fontsize{7}{9}\selectfont
+\%TODO: fix coefficients headers!
 
-\begin{longtable}{rrrrrrrl}
-\toprule
-year & ret\_OLS & se\_OLS & se\_cf & ret\_cf & ret\_cmi & se\_cmi & obs\\
-\midrule
-\endfirsthead
-\multicolumn{8}{@{}l}{\textit{(continued)}}\\
-\toprule
-year & ret\_OLS & se\_OLS & se\_cf & ret\_cf & ret\_cmi & se\_cmi & obs\\
-\midrule
-\endhead
-\
-\endfoot
-\bottomrule
-\endlastfoot
-1984 & 0.060 & 0.004 & 0.030 & 0.118 & 0.053 & 0.006 & 1.448\\
-1985 & 0.067 & 0.003 & 0.024 & 0.100 & 0.060 & 0.005 & 1.412\\
-1986 & 0.067 & 0.004 & 0.036 & 0.104 & 0.059 & 0.006 & 1.463\\
-1987 & 0.069 & 0.004 & 0.034 & 0.154 & 0.062 & 0.005 & 1.489\\
-1988 & 0.064 & 0.003 & 0.029 & 0.127 & 0.058 & 0.005 & 1.476\\
-\addlinespace
-1989 & 0.064 & 0.003 & 0.028 & 0.073 & 0.056 & 0.005 & 1.553\\
-1990 & 0.065 & 0.003 & 0.026 & 0.100 & 0.057 & 0.005 & 1.571\\
-1991 & 0.060 & 0.004 & 0.028 & 0.067 & 0.053 & 0.005 & 1.602\\
-1992 & 0.067 & 0.003 & 0.024 & 0.082 & 0.057 & 0.005 & 1.555\\
-1993 & 0.070 & 0.004 & 0.027 & 0.115 & 0.063 & 0.005 & 1.527\\
-\addlinespace
-1994 & 0.068 & 0.003 & 0.024 & 0.117 & 0.062 & 0.005 & 1.491\\
-1995 & 0.062 & 0.003 & 0.026 & 0.113 & 0.057 & 0.005 & 1.444\\
-1996 & 0.069 & 0.003 & 0.025 & 0.112 & 0.062 & 0.005 & 1.383\\
-1997 & 0.067 & 0.003 & 0.021 & 0.112 & 0.061 & 0.005 & 1.285\\
-1998 & 0.062 & 0.003 & 0.022 & 0.110 & 0.060 & 0.005 & 1.452\\
-\addlinespace
-1999 & 0.065 & 0.003 & 0.021 & 0.098 & 0.061 & 0.005 & 1.452\\
-2000 & 0.067 & 0.003 & 0.019 & 0.102 & 0.063 & 0.004 & 2.701\\
-2001 & 0.069 & 0.003 & 0.019 & 0.106 & 0.066 & 0.004 & 2.659\\
-2002 & 0.073 & 0.003 & 0.019 & 0.115 & 0.069 & 0.004 & 2.818\\
-2003 & 0.074 & 0.003 & 0.020 & 0.122 & 0.071 & 0.004 & 2.741\\
-\addlinespace
-2004 & 0.069 & 0.003 & 0.018 & 0.133 & 0.065 & 0.004 & 2.558\\
-2005 & 0.069 & 0.003 & 0.021 & 0.116 & 0.066 & 0.004 & 2.457\\
-2006 & 0.071 & 0.003 & 0.020 & 0.126 & 0.068 & 0.004 & 2.525\\
-2007 & 0.072 & 0.003 & 0.020 & 0.132 & 0.071 & 0.004 & 2.462\\
-2008 & 0.076 & 0.003 & 0.021 & 0.147 & 0.072 & 0.005 & 2.316\\
-\addlinespace
-2009 & 0.075 & 0.003 & 0.023 & 0.153 & 0.075 & 0.004 & 2.367\\
-2010 & 0.077 & 0.003 & 0.023 & 0.139 & 0.074 & 0.005 & 2.183\\
-2011 & 0.078 & 0.003 & 0.023 & 0.162 & 0.075 & 0.004 & 2.523\\
-2012 & 0.076 & 0.003 & 0.022 & 0.127 & 0.076 & 0.004 & 2.493\\
-2013 & 0.072 & 0.003 & 0.022 & 0.117 & 0.071 & 0.004 & 2.477\\
-\addlinespace
-2014 & 0.074 & 0.003 & 0.022 & 0.091 & 0.070 & 0.004 & 2.353\\
-2015 & 0.074 & 0.003 & 0.025 & 0.129 & 0.071 & 0.005 & 2.147\\
-2016 & 0.076 & 0.003 & 0.028 & 0.085 & 0.071 & 0.005 & 1.971\\*
-\end{longtable}\endgroup{}
+\end{frame}
+
+\begin{frame}{Pro's and Con's of estimation methods}
+\protect\hypertarget{pros-and-cons-of-estimation-methods}{}
+
+\begin{itemize}
+\tightlist
+\item
+  CMI
+
+  \begin{itemize}
+  \tightlist
+  \item
+    no analytical standard errors
+  \end{itemize}
+\item
+  CF
+
+  \begin{itemize}
+  \tightlist
+  \item
+    requires further distributional assumptions on error terms
+  \item
+    valid and relevant ``instrument''
+  \end{itemize}
+\end{itemize}
 
 \end{frame}
 
 \begin{frame}[allowframebreaks]{The end}
 \protect\hypertarget{the-end}{}
+
+TODO: add
 
 \end{frame}
 
