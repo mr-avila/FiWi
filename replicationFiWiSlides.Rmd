@@ -237,52 +237,17 @@ Interpretation of the coefficients of the control functions
 
 ### codes {.M}
 
-TODO:codes
-
-```{bash eval=FALSE, echo=T,  size="small"}
-*** GLM regression with Poisson distribution
-glm school sex age age_sq rural edu_f occ_f edu_m, ///
-    family(poisson) link(log)
-    
-*** Predict conditional mean and extract pearson residuals
-predict condMean, mu
-predict res_pears, pearson
-
-*** Calculate residual
-gen resid = school - condMean
-
-*** Estimate sigma^2
-egen sigma_sq_pears = mean(res_pears^2)
-
-*** generate APE
-egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
-```
-
-### codes
+CMI estimation
 
 ![](./img/code_CMI01.png){height="300px"}
 
 
 ### codes 
 
-TODO: Marcelo, please check if that screenshot of the code works - R doesnt want to compile again :/
+CF estimation
 
 ![](./img/code_cf.png){height="300px"}
 
-```{bash eval=FALSE, echo=T,  size="small"}
-* First step: Estimate the reduced form of schooling, i.e. regress schooling 
-* on all exogeneous variables including the instrument (siblings)
-reg school sex age age_sq rural edu_f edu_m occ_f sibl if syear==`n'
-
-* Obtain the residuals
-predict v`n', res
-
-* Second step:  Estimate the structural equation and include the residuals from 
-* the reduced form as an additional regressor
-qui: reg lnw school sex age age_sq rural edu_f edu_m ///
-    occ_f v`n' c.v`n'#c.school if syear==`n' // exclude instrument
-
-```
 
 
 # Results comparison and conclusion
@@ -328,15 +293,6 @@ Coefficients of the control functions
 - that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
-### Heterogenous returns to education by gender I {.forfun}
-
-![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
-
-### Heterogenous returns to education by gender II {.forfun}
-
-![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
-
-
 ```{r include=FALSE}
 dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
 dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
@@ -367,6 +323,16 @@ kable(x = head(dfCF, 14),
                 font_size = fontSize)
 ```
 
+
+### Heterogenous returns to education by gender I {.forfun}
+
+![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
+
+### Heterogenous returns to education by gender II {.forfun}
+
+![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
+
+
 ## Conclusion
 
 ### Pro's and Con's of estimation methods
@@ -377,8 +343,3 @@ kable(x = head(dfCF, 14),
 - CF
   - requires further distributional assumptions on error terms
   - valid and relevant "instrument"
-
-
-
-### The end {.allowframebreaks}
-
