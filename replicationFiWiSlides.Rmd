@@ -48,22 +48,25 @@ expansion in Germany.
 - data: SOEP 1984-2006
 
 
-### Background Information
+### Background Information {.allowframebreaks}
 
-- **increase in educational attainment** in the 1960s. From 1984 to 2006, average
-years of schooling increased:
-  - woman: 11.3 -> 12.8
-  - men: 11.9 -> 12.9
+**Increase in educational attainment** 
+
+![Source: SOEP 1984-2016, own estimations.](img/edu_sex.png){height="200px"}
+
+
   
-- **How can educational expansion affect the returns to education?**
+**How can educational expansion affect the returns to education?**
 
   -	Standard theory: an increase of labor supply of high-skilled workers should
   decrease the returns to education
   -	High-educated workers with higher unobserved motivation / ability which
   positively affects wages
-  -	More “less talented” accepted to higher education and thereby decreasing the
+  -	If more less talented are accepted to higher education, this should decrease the
   average productivity levels of higher educated workers --> overall effect not
   clear
+
+**Problems in the estimation of returns to education**
 
 - unobserved characteristics leading to **selection bias**:
   - higher ability and motivation to stay longer in education.
@@ -258,7 +261,7 @@ Coefficients of the control functions
     - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
     - The estimates are very similar to those of Gebel and Pfeiffer (2010)
 
-- that both coefficients are (mostly) negative hints that educational expansion caused more “less able” to achieve higher education
+- that both coefficients are (mostly) negative hints that educational expansion caused more âless ableâ to achieve higher education
 
 ### Divergences between replication and Gebel and Pfeiffer (2010)
 
