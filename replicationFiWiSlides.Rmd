@@ -183,7 +183,7 @@ $$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigm
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
-### Control Function Approach {.allowframebreaks} {.L}
+### Control Function Approach {.allowframebreaks .L}
 
 - Based on proposition by Garen (1984). 
 - CF approach can identify APE in heterogeneous returns while standard IV
@@ -245,63 +245,16 @@ Interpretation of the coefficients of the control functions
 
 ### Stata Implementation (CMI) {.CMI}
 
-```{stata, eval=F, echo=T, size="footnotesize"}
-*** GLM regression with Poisson distribution
-glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
-    
-*** Predict conditional mean and extract pearson residuals
-predict condMean, mu
-predict res_pears, pearson
+![](./img/code_CMI.png)
 
-*** Calculate residual
-gen resid = school - condMean
-
-*** Estimate sigma^2
-egen sigma_sq_pears = mean(res_pears^2)
-
-*** generate APE
-egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
-```
 
 ### Stata Implementation (Bootstrapping) {.bootstrappp}
 
-```{stata, eval=F, echo=T, size="footnotesize"}
-program define myCMI, rclass // return scalar as r() macro
-  preserve    // using preserve/restore due to repeated sampling 
-    bsample   // setup for boostrap sampling 
-    
-    ***************************************
-    * run estimation as in previous slide *
-    ***************************************
-	
-  	*** Return variable of interest
-  	local bCMI=bCMI 
-  	return scalar bCMI_return = `bCMI'
-  restore
-end
-
-*** Run boostrapping
-forv n = 1984/`endYear' {
-  bootstrap r(bCMI_return), reps(`reps') seed(42): myCMI if syear == `n'
-}
-```
+![](./img/code_bootstrapping.png)
 
 ### Stata Implementation (CF) {.CF}
 
-```{stata, eval=F, echo=T, size="footnotesize"}
-* First step: Estimate the reduced form of schooling, i.e. regress
-* schooling  on all exogeneous variables including the instrument (siblings)
-reg school sex age age_sq rural edu_f edu_m occ_f sibl ///
-    if syear==`n'
-
-* Obtain the residuals
-predict v`n', res
-
-* Second step:  Estimate the structural equation and include the
-* residuals from  the reduced form as an additional regressor
-reg lnw school sex age age_sq rural edu_f edu_m ///
-    occ_f v`n' c.v`n'#c.school if syear==`n'
-```
+![](./img/code_CF.png)
 
 
 

@@ -390,8 +390,8 @@ Pearson residuals and standard errors are bootstrapped.
 
 \end{frame}
 
-\begin{frame}{Control Function Approach \{.allowframebreaks\}}
-\protect\hypertarget{control-function-approach-.allowframebreaks}{}
+\begin{frame}[allowframebreaks]{Control Function Approach}
+\protect\hypertarget{control-function-approach}{}
 
 \begin{itemize}
 \tightlist
@@ -509,84 +509,24 @@ Comparison}\label{replication-and-comparison-1}}
 
 \end{frame}
 
-\begin{frame}[fragile]{Stata Implementation (CMI)}
+\begin{frame}{Stata Implementation (CMI)}
 \protect\hypertarget{stata-implementation-cmi}{}
 
-\footnotesize
-
-\begin{verbatim}
-*** GLM regression with Poisson distribution
-glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
-    
-*** Predict conditional mean and extract pearson residuals
-predict condMean, mu
-predict res_pears, pearson
-
-*** Calculate residual
-gen resid = school - condMean
-
-*** Estimate sigma^2
-egen sigma_sq_pears = mean(res_pears^2)
-
-*** generate APE
-egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
-\end{verbatim}
-
-\normalsize
+\includegraphics{./img/code_CMI.png}
 
 \end{frame}
 
-\begin{frame}[fragile]{Stata Implementation (Bootstrapping)}
+\begin{frame}{Stata Implementation (Bootstrapping)}
 \protect\hypertarget{stata-implementation-bootstrapping}{}
 
-\footnotesize
-
-\begin{verbatim}
-program define myCMI, rclass // return scalar as r() macro
-  preserve    // using preserve/restore due to repeated sampling 
-    bsample   // setup for boostrap sampling 
-    
-    ***************************************
-    * run estimation as in previous slide *
-    ***************************************
-    
-    *** Return variable of interest
-    local bCMI=bCMI 
-    return scalar bCMI_return = `bCMI'
-  restore
-end
-
-*** Run boostrapping
-forv n = 1984/`endYear' {
-  bootstrap r(bCMI_return), reps(`reps') seed(42): myCMI if syear == `n'
-}
-\end{verbatim}
-
-\normalsize
+\includegraphics{./img/code_bootstrapping.png}
 
 \end{frame}
 
-\begin{frame}[fragile]{Stata Implementation (CF)}
+\begin{frame}{Stata Implementation (CF)}
 \protect\hypertarget{stata-implementation-cf}{}
 
-\footnotesize
-
-\begin{verbatim}
-* First step: Estimate the reduced form of schooling, i.e. regress
-* schooling  on all exogeneous variables including the instrument (siblings)
-reg school sex age age_sq rural edu_f edu_m occ_f sibl ///
-    if syear==`n'
-
-* Obtain the residuals
-predict v`n', res
-
-* Second step:  Estimate the structural equation and include the
-* residuals from  the reduced form as an additional regressor
-reg lnw school sex age age_sq rural edu_f edu_m ///
-    occ_f v`n' c.v`n'#c.school if syear==`n'
-\end{verbatim}
-
-\normalsize
+\includegraphics{./img/code_CF.png}
 
 \end{frame}
 
@@ -719,7 +659,7 @@ Coefficients of the control functions
 \begingroup\fontsize{7}{9}\selectfont
 
 \begin{longtable}[t]{rrrrrrrrr}
-\caption{\label{tab:unnamed-chunk-5}Summary of Control Function estimates (replication)}\\
+\caption{\label{tab:unnamed-chunk-2}Summary of Control Function estimates (replication)}\\
 \toprule
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{First Stage} & \multicolumn{6}{c}{Second Stage} \\
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-9}
@@ -800,7 +740,7 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \begingroup\fontsize{7}{9}\selectfont
 
 \begin{longtable}[t]{rrrrrrrl}
-\caption{\label{tab:unnamed-chunk-6}Summary original results GB(2010).}\\
+\caption{\label{tab:unnamed-chunk-3}Summary original results GB(2010).}\\
 \toprule
 year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
 \midrule
@@ -846,7 +786,7 @@ year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
 \begingroup\fontsize{7}{9}\selectfont
 
 \begin{longtable}[t]{rrrrrrrl}
-\caption{\label{tab:unnamed-chunk-7}Summary replication results.}\\
+\caption{\label{tab:unnamed-chunk-4}Summary replication results.}\\
 \toprule
 year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
 \midrule
