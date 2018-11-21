@@ -31,7 +31,8 @@ library(kableExtra)
 
 # Theoretical Part
 
-TODO: add outline
+### Outline
+
 
 ### Summary of Gebel and Pfeiffer (2010)
 
@@ -201,7 +202,7 @@ Interpretation of the coefficients of the control functions
     - Positive coefficient would indicate that those with unexpected educational "over-achievement" tend to earn higher wages
 
 
-# Replication
+# Replication and Comparison
 
 ### codes
 
@@ -219,7 +220,7 @@ TODO: play with codes
 - Three estimation methods: OLS, CMI  CF
 - control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
 
-## Results
+# Results
 
 ### Results
 
@@ -259,10 +260,10 @@ Coefficients of the control functions
 
 - that both coefficients are (mostly) negative hints that educational expansion caused more “less able” to achieve higher education
 
-### Explanations for divergences between replication and Gebel and Pfeiffer (2010)
+### Divergences between replication and Gebel and Pfeiffer (2010)
 
 - sample not the same
-- ...
+- large variance of CF approach
 
 
 ### Results and Comparison I
@@ -338,4 +339,3 @@ kable(x = dfRp,
 ### The end {.allowframebreaks}
 
 TODO: add 
-
