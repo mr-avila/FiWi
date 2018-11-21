@@ -29,9 +29,13 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Theoretical Part
+# Introduction
+
+## Theoretical Framework
 
 ### Outline
+
+
 
 
 ### Summary of Gebel and Pfeiffer (2010)
@@ -53,7 +57,6 @@ expansion in Germany.
 **Increase in educational attainment** 
 
 ![Source: SOEP 1984-2016, own estimations.](img/edu_sex.png){height="200px"}
-
 
   
 **How can educational expansion affect the returns to education?**
@@ -100,6 +103,7 @@ $$E(\partial \ln Y / \partial S) = E(b_i) = \beta$$
 
 In case of homogeneous returns to education the wage equation reduces to: 
 $$\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}$$
+
 - Unobserved heterogeneity may only affect the **intercept** of the wage
 equation.
 
@@ -107,44 +111,43 @@ equation.
 
 ### Empirical Framework (Intuition) I
 
-![](img/rcmodel001.png){width="300px"}
+![Simple OLS](img/rcmodel001.png){width="300px"}
 
-- Simple OLS
 
 ### Empirical Framework (Intuition) II
 
-![](img/rcmodel002.png){width="300px"}
+![Multiple OLS with homogeneous return to Educ](img/rcmodel002.png){width="300px"}
 
-- Multiple OLS with homogeneous return to Educ 
 
 ### Empirical Framework (Intuition) III
 
-![](img/rcmodel003.png){width="300px"}
+![Correlated Random Coefficient Model](img/rcmodel003.png){width="300px"}
 
-- Correlated Random Coefficient Model
 
 ### Distinction to conventional methods
 
 - OLS
   - ability and "background" bias
-- IV Methods
+- IV Methods:
+  - suitable if assume homogeneous returns to education.
   - if education is correlated with **unobserved individual heterogeneity**, IV
   methods may fail to identity APE.
-    - alternative: **L**ocal **A**verage **T**reatment **E**ffect.
+    - alternative: **L**ocal **A**verage **T**reatment **E**ffect if interested 
+    in effect of educational policy reforms.
 
 
 ### Conditional Mean Independence 
 
-According to Wooldridge (2004, pg. 7), **APE** is identified by: 
+According to Wooldridge (2004, pg.7), **APE** is identified by: 
 $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 
 
-- $X_i$ should be good predictors of treatment $S_i$ (Wooldridge 2004, pg 7).
+- $X_i$ should be "good predictors"" of treatment $S_i$ (Wooldridge 2004, pg.7).
 - (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$ and $S_i$. 
 - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
-  redundant. "Staying longer in Education is determined by $X$ covariates".
+  redundant --> "Staying longer in Education is determined by $X$ covariates".
 
 ### Estimator for $\beta$ and GLM 
 
@@ -207,6 +210,8 @@ Interpretation of the coefficients of the control functions
 
 # Replication and Comparison
 
+## Replication and Comparison
+
 ### codes
 
 ```
@@ -223,16 +228,9 @@ TODO: play with codes
 - Three estimation methods: OLS, CMI  CF
 - control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
 
-# Results
+# Results comparison and conclusion
 
-### Results
-
-- I'm not so sure how to add images / tables here but in the new do-file link https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G you can just save the graph with all 3 approaches
-- and then display on the other side the same graph from GP(2010, p.35)
-
-- also: here is a table with the our and GP estimates for comparisons - your bootstrapped standard errors are already included
-
-https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj
+## Results
 
 ### Estimated returns on education
 
@@ -269,13 +267,22 @@ Coefficients of the control functions
 - large variance of CF approach
 
 
-### Results and Comparison I
+### Results Comparison I
+
+![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_Repli.png){height="250px"}
+
+### Results Comparison II
 
 ![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
 
-### Results and Comparison II
+### Results Comparison III
 
-![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_Repli.png){height="250px"}
+![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
+
+
+### Results Comparison IV
+
+![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
 
 
 ```{r include=FALSE}
@@ -309,24 +316,7 @@ kable(x = head(dfCF, 14),
 
 ### Results: Control Function (replication)
 
-```{r eval=FALSE, include=FALSE}
-kable(x = dfGP,
-      format = "latex",
-      longtable = TRUE,
-      booktabs = TRUE) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                font_size = fontSize)
-```
-
-```{r eval=FALSE, include=FALSE}
-kable(x = dfRp,
-      format = "latex",
-      longtable = TRUE,
-      booktabs = TRUE) %>% 
-  kable_styling(latex_options = c("repeat_header"),
-                font_size = fontSize)
-
-```
+## Conclusion
 
 ### Pro's and Con's of estimation methods
 

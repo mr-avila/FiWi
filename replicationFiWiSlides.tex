@@ -114,10 +114,16 @@ Michael Gebel and Friedhelm Pfeiffer}
 \begin{document}
 \frame{\titlepage}
 
-\hypertarget{theoretical-part}{%
-\section{Theoretical Part}\label{theoretical-part}}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
-TODO: add outline
+\hypertarget{theoretical-framework}{%
+\subsection{Theoretical Framework}\label{theoretical-framework}}
+
+\begin{frame}{Outline}
+\protect\hypertarget{outline}{}
+
+\end{frame}
 
 \begin{frame}{Summary of Gebel and Pfeiffer (2010)}
 \protect\hypertarget{summary-of-gebel-and-pfeiffer-2010}{}
@@ -149,38 +155,37 @@ TODO: add outline
 
 \end{frame}
 
-\begin{frame}{Background Information}
+\begin{frame}[allowframebreaks]{Background Information}
 \protect\hypertarget{background-information}{}
 
+\textbf{Increase in educational attainment}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,height=2.08333in]{img/edu_sex.png}
+\caption{Source: SOEP 1984-2016, own estimations.}
+\end{figure}
+
+\textbf{How can educational expansion affect the returns to education?}
+
 \begin{itemize}
+\tightlist
 \item
-  \textbf{increase in educational attainment} in the 1960s. From 1984 to
-  2006, average years of schooling increased:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    woman: 11.3 -\textgreater{} 12.8
-  \item
-    men: 11.9 -\textgreater{} 12.9
-  \end{itemize}
+  Standard theory: an increase of labor supply of high-skilled workers
+  should decrease the returns to education
 \item
-  \textbf{How can educational expansion affect the returns to
-  education?}
+  High-educated workers with higher unobserved motivation / ability
+  which positively affects wages
+\item
+  If more less talented are accepted to higher education, this should
+  decrease the average productivity levels of higher educated workers
+  --\textgreater{} overall effect not clear
+\end{itemize}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Standard theory: an increase of labor supply of high-skilled workers
-    should decrease the returns to education
-  \item
-    High-educated workers with higher unobserved motivation / ability
-    which positively affects wages
-  \item
-    More ``less talented'' accepted to higher education and thereby
-    decreasing the average productivity levels of higher educated
-    workers --\textgreater{} overall effect not clear
-  \end{itemize}
+\textbf{Problems in the estimation of returns to education}
+
+\begin{itemize}
+\tightlist
 \item
   unobserved characteristics leading to \textbf{selection bias}:
 
@@ -229,12 +234,12 @@ individual \(i\)
 \end{itemize}
 
 In case of homogeneous returns to education the wage equation reduces
-to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\] - Unobserved
-heterogeneity may only affect the \textbf{intercept} of the wage
-equation.
+to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \begin{itemize}
-\tightlist
+\item
+  Unobserved heterogeneity may only affect the \textbf{intercept} of the
+  wage equation.
 \item
   still potential endogeneity if \(\varepsilon_{ai}\) correlates with
   \(S_i\)
@@ -245,39 +250,33 @@ equation.
 \begin{frame}{Empirical Framework (Intuition) I}
 \protect\hypertarget{empirical-framework-intuition-i}{}
 
+\begin{figure}
+\centering
 \includegraphics[width=3.125in,height=\textheight]{img/rcmodel001.png}
-
-\begin{itemize}
-\tightlist
-\item
-  Simple OLS
-\end{itemize}
+\caption{Simple OLS}
+\end{figure}
 
 \end{frame}
 
 \begin{frame}{Empirical Framework (Intuition) II}
 \protect\hypertarget{empirical-framework-intuition-ii}{}
 
+\begin{figure}
+\centering
 \includegraphics[width=3.125in,height=\textheight]{img/rcmodel002.png}
-
-\begin{itemize}
-\tightlist
-\item
-  Multiple OLS with homogeneous return to Educ
-\end{itemize}
+\caption{Multiple OLS with homogeneous return to Educ}
+\end{figure}
 
 \end{frame}
 
 \begin{frame}{Empirical Framework (Intuition) III}
 \protect\hypertarget{empirical-framework-intuition-iii}{}
 
+\begin{figure}
+\centering
 \includegraphics[width=3.125in,height=\textheight]{img/rcmodel003.png}
-
-\begin{itemize}
-\tightlist
-\item
-  Correlated Random Coefficient Model
-\end{itemize}
+\caption{Correlated Random Coefficient Model}
+\end{figure}
 
 \end{frame}
 
@@ -295,10 +294,12 @@ equation.
     ability and ``background'' bias
   \end{itemize}
 \item
-  IV Methods
+  IV Methods:
 
   \begin{itemize}
   \tightlist
+  \item
+    suitable if assume homogeneous returns to education.
   \item
     if education is correlated with \textbf{unobserved individual
     heterogeneity}, IV methods may fail to identity APE.
@@ -307,7 +308,8 @@ equation.
     \tightlist
     \item
       alternative: \textbf{L}ocal \textbf{A}verage \textbf{T}reatment
-      \textbf{E}ffect.
+      \textbf{E}ffect if interested in effect of educational policy
+      reforms.
     \end{itemize}
   \end{itemize}
 \end{itemize}
@@ -317,7 +319,7 @@ equation.
 \begin{frame}{Conditional Mean Independence}
 \protect\hypertarget{conditional-mean-independence}{}
 
-According to Wooldridge (2004, pg. 7), \textbf{APE} is identified by:
+According to Wooldridge (2004, pg.7), \textbf{APE} is identified by:
 \[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)\]
 \[E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
@@ -325,14 +327,14 @@ a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
 \begin{itemize}
 \tightlist
 \item
-  \(X_i\) should be good predictors of treatment \(S_i\) (Wooldridge
-  2004, pg 7).
+  \(X_i\) should be ``good predictors''" of treatment \(S_i\)
+  (Wooldridge 2004, pg.7).
 \item
   (A.1): Redundancy of \(X_i\) given \(a_i\) and \(b_i\) and \(S_i\).
 \item
   (A.2): In the first two conditional moments of \(S_i\), \(a_i\) and
-  \(b_i\) are redundant. ``Staying longer in Education is determined by
-  \(X\) covariates''.
+  \(b_i\) are redundant --\textgreater{} ``Staying longer in Education
+  is determined by \(X\) covariates''.
 \end{itemize}
 
 \end{frame}
@@ -443,6 +445,10 @@ Interpretation of the coefficients of the control functions
 \hypertarget{replication-and-comparison}{%
 \section{Replication and Comparison}\label{replication-and-comparison}}
 
+\hypertarget{replication-and-comparison-1}{%
+\subsection{Replication and
+Comparison}\label{replication-and-comparison-1}}
+
 \begin{frame}[fragile]{codes}
 \protect\hypertarget{codes}{}
 
@@ -478,27 +484,12 @@ TODO: play with codes
 
 \end{frame}
 
+\hypertarget{results-comparison-and-conclusion}{%
+\section{Results comparison and
+conclusion}\label{results-comparison-and-conclusion}}
+
 \hypertarget{results}{%
-\section{Results}\label{results}}
-
-\begin{frame}{Results}
-\protect\hypertarget{results-1}{}
-
-\begin{itemize}
-\item
-  I'm not so sure how to add images / tables here but in the new do-file
-  link \url{https://1drv.ms/u/s!Ap1Tm8513oIthBjgylALS8Zp3A7G} you can
-  just save the graph with all 3 approaches
-\item
-  and then display on the other side the same graph from GP(2010, p.35)
-\item
-  also: here is a table with the our and GP estimates for comparisons -
-  your bootstrapped standard errors are already included
-\end{itemize}
-
-\url{https://1drv.ms/x/s!Ap1Tm8513oIthBp5BPId0qO8h3Yj}
-
-\end{frame}
+\subsection{Results}\label{results}}
 
 \begin{frame}{Estimated returns on education}
 \protect\hypertarget{estimated-returns-on-education}{}
@@ -570,7 +561,7 @@ Coefficients of the control functions
   \end{itemize}
 \item
   that both coefficients are (mostly) negative hints that educational
-  expansion caused more ``less able'' to achieve higher education
+  expansion caused more âless ableâ to achieve higher education
 \end{itemize}
 
 \end{frame}
@@ -584,13 +575,25 @@ Coefficients of the control functions
 \item
   sample not the same
 \item
-  \ldots{}
+  large variance of CF approach
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Results and Comparison I}
-\protect\hypertarget{results-and-comparison-i}{}
+\begin{frame}{Results Comparison I}
+\protect\hypertarget{results-comparison-i}{}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,height=2.60417in]{img/OLS_CMI_CF_Repli.png}
+\caption{Replication results: Comparison between OLS, CMI and CF
+approaches}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Results Comparison II}
+\protect\hypertarget{results-comparison-ii}{}
 
 \begin{figure}
 \centering
@@ -600,14 +603,24 @@ Coefficients of the control functions
 
 \end{frame}
 
-\begin{frame}{Results and Comparison II}
-\protect\hypertarget{results-and-comparison-ii}{}
+\begin{frame}{Results Comparison III}
+\protect\hypertarget{results-comparison-iii}{}
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth,height=2.60417in]{img/OLS_CMI_CF_Repli.png}
-\caption{Replication results: Comparison between OLS, CMI and CF
-approaches}
+\includegraphics[width=\textwidth,height=2.60417in]{img/results_sex.png}
+\caption{Replication results: \textbf{APE} by gender (CMI approach)}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Results Comparison IV}
+\protect\hypertarget{results-comparison-iv}{}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,height=2.60417in]{img/GP2010_CMI_gender.png}
+\caption{Original Results (GP 2010, pg.34}
 \end{figure}
 
 \end{frame}
@@ -663,6 +676,9 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \protect\hypertarget{results-control-function-replication-1}{}
 
 \end{frame}
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
 \begin{frame}{Pro's and Con's of estimation methods}
 \protect\hypertarget{pros-and-cons-of-estimation-methods}{}
