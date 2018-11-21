@@ -134,7 +134,7 @@ equation.
 
 ### M: Empirical Framework (Intuition) II
 
-![Multiple OLS with homogeneous return to Educ](img/rcmodel002.png){width="300px"}
+![Multiple OLS with homogeneous return to Education](img/rcmodel002.png){width="300px"}
 
 
 ### M: Empirical Framework (Intuition) III
@@ -336,14 +336,16 @@ kable(x = head(dfCF, 14),
 
 ### L: Conclusion
 
-- CMI
-      - no analytical standard errors
-      - only identifies APE.
+**CMI**
 
-- CF
-      - requires further distributional assumptions on error terms
-      - requires valid and relevant "instrument"
-      - estimates are very imprecise
+- no analytical standard errors
+- only identifies APE.
+
+**CF**
+
+- requires further distributional assumptions on error terms
+- requires valid and relevant "instrument"
+- estimates are very imprecise
 
 ## The end
 
