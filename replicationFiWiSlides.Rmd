@@ -265,6 +265,9 @@ egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
 
 ### codes 
 
+TODO: Marcelo, please check if that screenshot of the code works - R doesnt want to compile again :/
+
+![](./img/code_cf.png){height="300px"}
 
 ```{bash eval=FALSE, echo=T,  size="small"}
 * First step: Estimate the reduced form of schooling, i.e. regress schooling 
