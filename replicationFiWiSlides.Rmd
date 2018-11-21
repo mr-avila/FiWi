@@ -37,9 +37,9 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Introduction {.L}
+# Introduction 
 
-### Outline {.L}
+### L: Outline 
 
 - Theoretical Framework
 
@@ -57,7 +57,8 @@ library(kableExtra)
 
 ## Theoretical Framework
 
-### Summary of Gebel and Pfeiffer (2010) {.M}
+
+### L: Summary of Gebel and Pfeiffer (2010) 
 
 - Basic idea: examine evolution of returns to education in West German labour
 market. 
@@ -72,13 +73,12 @@ expansion in Germany.
 - data: SOEP 1984-2006
 
 
-### Background Information {.allowframebreaks .L}
+### L: Background Information {.allowframebreaks}
 
 **Increase in educational attainment** 
 
 ![Source: SOEP 1984-2016, own estimations.](img/edu_sex.png){height="200px"}
 
-  
 **How can educational expansion affect the returns to education?**
 
   -	Standard theory: an increase of labor supply of high-skilled workers should
@@ -95,10 +95,9 @@ expansion in Germany.
   - higher ability and motivation to stay longer in education.
   - select jobs with higher expected returns. 
 
-
 ## Econometric Approach 
 
-### Empirical Framework (Derivation) {.allowframebreaks .M}
+### M: Empirical Framework (Derivation) {.allowframebreaks}
 
 The study is based on the **correlated random coefficient model** (Wooldridge,
 2004) specified as:
@@ -128,22 +127,22 @@ equation.
 
 - still potential endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
 
-### Empirical Framework (Intuition) I {.M}
+### M: Empirical Framework (Intuition) I}
 
 ![Simple OLS](img/rcmodel001.png){width="300px"}
 
 
-### Empirical Framework (Intuition) II {.M}
+### M: Empirical Framework (Intuition) II}
 
 ![Multiple OLS with homogeneous return to Educ](img/rcmodel002.png){width="300px"}
 
 
-### Empirical Framework (Intuition) III {.M}
+### M: Empirical Framework (Intuition) III}
 
 ![Correlated Random Coefficient Model](img/rcmodel003.png){width="300px"}
 
 
-### Distinction to conventional methods {.M}
+### M: Distinction to conventional methods}
 
 - OLS
 
@@ -157,20 +156,21 @@ equation.
     in effect of educational policy reforms.
 
 
-### Conditional Mean Independence {.M}
+### M: Conditional Mean Independence}
 
 According to Wooldridge (2004, pg.7), **APE** is identified if: 
 $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 
-
-- $X_i$ should be "good predictors"" of treatment $S_i$ (Wooldridge 2004, pg.7).
 - (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$ and $S_i$. 
 - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
   redundant --> "Staying longer in Education is determined by $X$ covariates".
+- Basically: $X_i$ should be "good predictors" of treatment $S_i$ (Wooldridge
+2004, pg.7).
 
-### Estimator for $\beta$ and GLM {.M}
+
+### M: Estimator for $\beta$ and GLM}
 
 The **APE** can be estimated by:
 
@@ -181,7 +181,7 @@ $$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigm
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
-### Control Function Approach {.allowframebreaks .L}
+### L: Control Function Approach {.allowframebreaks}
 
 - Based on proposition by Garen (1984). 
 - CF approach can identify APE in heterogeneous returns while standard IV
@@ -206,8 +206,7 @@ where:
  - $v_i$ is positive if an individual acquires higher education than expected conditional on observed characteristics
 
 **Second step**: augmented wage equation
-$$\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
-$$
+$$\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i$$
 where: 
 
 - $\gamma_1$ and $\gamma_2$ are the **control functions**
@@ -219,7 +218,7 @@ where:
 - $E(w_i \mid X_i, S_i, v_i) = 0$ (as shown in Heckman / Robb, 1985)
 
 
-### Control Function Approach III {.L}
+### L: Control Function Approach III
 
 Interpretation of the coefficients of the control functions
 
@@ -233,7 +232,7 @@ Interpretation of the coefficients of the control functions
 
 ## Replication and Comparison
 
-### Set-up {.L}
+### L: Set-up
 
 - We use the same sample: West Germans (not foreign-born or self-employed) between 25 and 60 years who work full-time
 - We have less observations than Gebel and Pfeiffer (2010) per survey year after we delete all observations with missing values
@@ -241,40 +240,41 @@ Interpretation of the coefficients of the control functions
 - Three estimation methods: OLS, CMI  CF
 - control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
 
-### Stata Implementation (CMI) {.CMI}
+### M: Stata Implementation (CMI) {.CMI}
 
 ![](./img/code_CMI.png)
 
-### Stata Implementation (Bootstrapping) {.bootstrappp}
+### M: Stata Implementation (Bootstrapping) {.bootstrappp}
 
 ![](./img/code_bootstrapping.png)
 
-### Stata Implementation (CF) {.CF}
+### L: Stata Implementation (CF) {.CF}
 
 ![](./img/code_CF.png)
 
 ## Results
 
-### Results Comparison I {.M}
+### M: Results Comparison I}
 
 ![Replication results: Comparison between OLS, CMI and CF approaches](img/results.png){height="250px"}
 
-### Results Comparison II {.M}
+### M: Results Comparison II}
 
 ![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
 
 
-### Estimated returns on education {.M}
+### M: Estimated returns on education
 
 - Estimates from OLS and CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
 - Generally, CF estimates are much more volatile and less precise
 
 Differences between replicated and original estimations
+
 - Our OLS estimates are on average larger than those of Gebel and Pfeiffer (2010) by 0.004 percentage points
 - Our CMI estimates are on average larger than those of Gebel and Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
-### Control function estimates {.allowframebreaks .L}
+### L: Control function estimates {.allowframebreaks}
 
 Instrumental variable in first step
 
@@ -294,16 +294,7 @@ Coefficients of the control functions
 - that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
-### Heterogenous returns to education {.forfun}
-
-![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
-
-### Heterogenous returns to education {.forfun}
-
-![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
-
-
-### Results: Control Function (replication)
+### L: Results: Control Function (replication)
 
 
 ```{r include=FALSE}
@@ -332,21 +323,22 @@ kable(x = head(dfCF, 14),
 ```
 
 
-### Heterogenous returns to education by gender I {.forfun}
+### ?: Heterogenous returns to education by gender I {.forfun}
 
-![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
+![Replication results: **APE** by gender (CMI)](img/results_sex.png){height="250px"}
 
-### Heterogenous returns to education by gender II {.forfun}
+### ?: Heterogenous returns to education by gender II {.forfun}
 
-![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
+![Original Results **APE** by gender (CMI) (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
 
 
 ## Conclusion
 
-### Conclusion
+### L: Conclusion
 
 - CMI
       - no analytical standard errors
+      - only identifies APE.
 
 - CF
       - requires further distributional assumptions on error terms

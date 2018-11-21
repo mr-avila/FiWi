@@ -117,8 +117,8 @@ Michael Gebel and Friedhelm Pfeiffer}
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-\begin{frame}{Outline}
-\protect\hypertarget{outline}{}
+\begin{frame}{L: Outline}
+\protect\hypertarget{l-outline}{}
 
 \begin{itemize}
 \item
@@ -162,8 +162,8 @@ Michael Gebel and Friedhelm Pfeiffer}
 \hypertarget{theoretical-framework}{%
 \subsection{Theoretical Framework}\label{theoretical-framework}}
 
-\begin{frame}{Summary of Gebel and Pfeiffer (2010)}
-\protect\hypertarget{summary-of-gebel-and-pfeiffer-2010}{}
+\begin{frame}{L: Summary of Gebel and Pfeiffer (2010)}
+\protect\hypertarget{l-summary-of-gebel-and-pfeiffer-2010}{}
 
 \begin{itemize}
 \item
@@ -191,8 +191,8 @@ Michael Gebel and Friedhelm Pfeiffer}
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Background Information}
-\protect\hypertarget{background-information}{}
+\begin{frame}[allowframebreaks]{L: Background Information}
+\protect\hypertarget{l-background-information}{}
 
 \textbf{Increase in educational attainment}
 
@@ -239,8 +239,8 @@ Michael Gebel and Friedhelm Pfeiffer}
 \hypertarget{econometric-approach}{%
 \subsection{Econometric Approach}\label{econometric-approach}}
 
-\begin{frame}[allowframebreaks]{Empirical Framework (Derivation)}
-\protect\hypertarget{empirical-framework-derivation}{}
+\begin{frame}[allowframebreaks]{M: Empirical Framework (Derivation)}
+\protect\hypertarget{m-empirical-framework-derivation}{}
 
 The study is based on the \textbf{correlated random coefficient model}
 (Wooldridge, 2004) specified as: \[\ln Y_i = a_i + b_i S_i\] with
@@ -283,8 +283,8 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
-\begin{frame}{Empirical Framework (Intuition) I}
-\protect\hypertarget{empirical-framework-intuition-i}{}
+\begin{frame}{M: Empirical Framework (Intuition) I\}}
+\protect\hypertarget{m-empirical-framework-intuition-i}{}
 
 \begin{figure}
 \centering
@@ -294,8 +294,8 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
-\begin{frame}{Empirical Framework (Intuition) II}
-\protect\hypertarget{empirical-framework-intuition-ii}{}
+\begin{frame}{M: Empirical Framework (Intuition) II\}}
+\protect\hypertarget{m-empirical-framework-intuition-ii}{}
 
 \begin{figure}
 \centering
@@ -305,8 +305,8 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
-\begin{frame}{Empirical Framework (Intuition) III}
-\protect\hypertarget{empirical-framework-intuition-iii}{}
+\begin{frame}{M: Empirical Framework (Intuition) III\}}
+\protect\hypertarget{m-empirical-framework-intuition-iii}{}
 
 \begin{figure}
 \centering
@@ -316,8 +316,8 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
-\begin{frame}{Distinction to conventional methods}
-\protect\hypertarget{distinction-to-conventional-methods}{}
+\begin{frame}{M: Distinction to conventional methods\}}
+\protect\hypertarget{m-distinction-to-conventional-methods}{}
 
 \begin{itemize}
 \item
@@ -347,8 +347,8 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
-\begin{frame}{Conditional Mean Independence}
-\protect\hypertarget{conditional-mean-independence}{}
+\begin{frame}{M: Conditional Mean Independence\}}
+\protect\hypertarget{m-conditional-mean-independence}{}
 
 According to Wooldridge (2004, pg.7), \textbf{APE} is identified if:
 \[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)\]
@@ -358,20 +358,20 @@ a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
 \begin{itemize}
 \tightlist
 \item
-  \(X_i\) should be ``good predictors''" of treatment \(S_i\)
-  (Wooldridge 2004, pg.7).
-\item
   (A.1): Redundancy of \(X_i\) given \(a_i\) and \(b_i\) and \(S_i\).
 \item
   (A.2): In the first two conditional moments of \(S_i\), \(a_i\) and
   \(b_i\) are redundant --\textgreater{} ``Staying longer in Education
   is determined by \(X\) covariates''.
+\item
+  Basically: \(X_i\) should be ``good predictors'' of treatment \(S_i\)
+  (Wooldridge 2004, pg.7).
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Estimator for \(\beta\) and GLM}
-\protect\hypertarget{estimator-for-beta-and-glm}{}
+\begin{frame}{M: Estimator for \(\beta\) and GLM\}}
+\protect\hypertarget{m-estimator-for-beta-and-glm}{}
 
 The \textbf{APE} can be estimated by:
 
@@ -384,8 +384,8 @@ Pearson residuals and standard errors are bootstrapped.
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Control Function Approach}
-\protect\hypertarget{control-function-approach}{}
+\begin{frame}[allowframebreaks]{L: Control Function Approach}
+\protect\hypertarget{l-control-function-approach}{}
 
 \begin{itemize}
 \tightlist
@@ -423,8 +423,8 @@ where:
 \end{itemize}
 
 \textbf{Second step}: augmented wage equation
-\[\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
-\] where:
+\[\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i\]
+where:
 
 \begin{itemize}
 \item
@@ -442,8 +442,8 @@ where:
 
 \end{frame}
 
-\begin{frame}{Control Function Approach III}
-\protect\hypertarget{control-function-approach-iii}{}
+\begin{frame}{L: Control Function Approach III}
+\protect\hypertarget{l-control-function-approach-iii}{}
 
 Interpretation of the coefficients of the control functions
 
@@ -480,8 +480,8 @@ Interpretation of the coefficients of the control functions
 \subsection{Replication and
 Comparison}\label{replication-and-comparison-1}}
 
-\begin{frame}{Set-up}
-\protect\hypertarget{set-up}{}
+\begin{frame}{L: Set-up}
+\protect\hypertarget{l-set-up}{}
 
 \begin{itemize}
 \tightlist
@@ -503,22 +503,22 @@ Comparison}\label{replication-and-comparison-1}}
 
 \end{frame}
 
-\begin{frame}{Stata Implementation (CMI)}
-\protect\hypertarget{stata-implementation-cmi}{}
+\begin{frame}{M: Stata Implementation (CMI)}
+\protect\hypertarget{m-stata-implementation-cmi}{}
 
 \includegraphics{./img/code_CMI.png}
 
 \end{frame}
 
-\begin{frame}{Stata Implementation (Bootstrapping)}
-\protect\hypertarget{stata-implementation-bootstrapping}{}
+\begin{frame}{M: Stata Implementation (Bootstrapping)}
+\protect\hypertarget{m-stata-implementation-bootstrapping}{}
 
 \includegraphics{./img/code_bootstrapping.png}
 
 \end{frame}
 
-\begin{frame}{Stata Implementation (CF)}
-\protect\hypertarget{stata-implementation-cf}{}
+\begin{frame}{L: Stata Implementation (CF)}
+\protect\hypertarget{l-stata-implementation-cf}{}
 
 \includegraphics{./img/code_CF.png}
 
@@ -527,8 +527,8 @@ Comparison}\label{replication-and-comparison-1}}
 \hypertarget{results}{%
 \subsection{Results}\label{results}}
 
-\begin{frame}{Results Comparison I}
-\protect\hypertarget{results-comparison-i}{}
+\begin{frame}{M: Results Comparison I\}}
+\protect\hypertarget{m-results-comparison-i}{}
 
 \begin{figure}
 \centering
@@ -539,8 +539,8 @@ approaches}
 
 \end{frame}
 
-\begin{frame}{Results Comparison II}
-\protect\hypertarget{results-comparison-ii}{}
+\begin{frame}{M: Results Comparison II\}}
+\protect\hypertarget{m-results-comparison-ii}{}
 
 \begin{figure}
 \centering
@@ -550,8 +550,8 @@ approaches}
 
 \end{frame}
 
-\begin{frame}{Estimated returns on education}
-\protect\hypertarget{estimated-returns-on-education}{}
+\begin{frame}{M: Estimated returns on education}
+\protect\hypertarget{m-estimated-returns-on-education}{}
 
 \begin{itemize}
 \tightlist
@@ -562,18 +562,27 @@ approaches}
   Generally, CF estimates are much more volatile and less precise
 \end{itemize}
 
-Differences between replicated and original estimations - Our OLS
-estimates are on average larger than those of Gebel and Pfeiffer (2010)
-by 0.004 percentage points - Our CMI estimates are on average larger
-than those of Gebel and Pfeiffer (2010) by 0.002 percentage points
-(first years lower, than larger) - Our CF estimates are on average
-significantly larger by 0.032 percentage points, though the divergence
-gets smaller from 2000 onwards
+Differences between replicated and original estimations
+
+\begin{itemize}
+\tightlist
+\item
+  Our OLS estimates are on average larger than those of Gebel and
+  Pfeiffer (2010) by 0.004 percentage points
+\item
+  Our CMI estimates are on average larger than those of Gebel and
+  Pfeiffer (2010) by 0.002 percentage points (first years lower, than
+  larger)
+\item
+  Our CF estimates are on average significantly larger by 0.032
+  percentage points, though the divergence gets smaller from 2000
+  onwards
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Control function estimates}
-\protect\hypertarget{control-function-estimates}{}
+\begin{frame}[allowframebreaks]{L: Control function estimates}
+\protect\hypertarget{l-control-function-estimates}{}
 
 Instrumental variable in first step
 
@@ -625,30 +634,8 @@ Coefficients of the control functions
 
 \end{frame}
 
-\begin{frame}{Heterogenous returns to education}
-\protect\hypertarget{heterogenous-returns-to-education}{}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=2.60417in]{img/results_sex.png}
-\caption{Replication results: \textbf{APE} by gender (CMI approach)}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Heterogenous returns to education}
-\protect\hypertarget{heterogenous-returns-to-education-1}{}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=2.60417in]{img/GP2010_CMI_gender.png}
-\caption{Original Results (GP 2010, pg.34}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Results: Control Function (replication)}
-\protect\hypertarget{results-control-function-replication}{}
+\begin{frame}{L: Results: Control Function (replication)}
+\protect\hypertarget{l-results-control-function-replication}{}
 
 \begingroup\fontsize{7}{9}\selectfont
 
@@ -695,24 +682,24 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 
 \end{frame}
 
-\begin{frame}{Heterogenous returns to education by gender I}
+\begin{frame}{?: Heterogenous returns to education by gender I}
 \protect\hypertarget{heterogenous-returns-to-education-by-gender-i}{}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,height=2.60417in]{img/results_sex.png}
-\caption{Replication results: \textbf{APE} by gender (CMI approach)}
+\caption{Replication results: \textbf{APE} by gender (CMI)}
 \end{figure}
 
 \end{frame}
 
-\begin{frame}{Heterogenous returns to education by gender II}
+\begin{frame}{?: Heterogenous returns to education by gender II}
 \protect\hypertarget{heterogenous-returns-to-education-by-gender-ii}{}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,height=2.60417in]{img/GP2010_CMI_gender.png}
-\caption{Original Results (GP 2010, pg.34}
+\caption{Original Results \textbf{APE} by gender (CMI) (GP 2010, pg.34}
 \end{figure}
 
 \end{frame}
@@ -720,12 +707,12 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \hypertarget{conclusion}{%
 \subsection{Conclusion}\label{conclusion}}
 
-\begin{frame}{Conclusion}
-\protect\hypertarget{conclusion-1}{}
+\begin{frame}{L: Conclusion}
+\protect\hypertarget{l-conclusion}{}
 
 \begin{itemize}
 \item
-  CMI - no analytical standard errors
+  CMI - no analytical standard errors - only identifies APE.
 \item
   CF - requires further distributional assumptions on error terms -
   requires valid and relevant ``instrument'' - estimates are very
