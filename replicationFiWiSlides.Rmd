@@ -346,12 +346,12 @@ kable(x = head(dfCF, 14),
 ### Conclusion
 
 - CMI
-  - no analytical standard errors
+      - no analytical standard errors
 
 - CF
-  - requires further distributional assumptions on error terms
-  - requires valid and relevant "instrument"
-  - effiency issues
+      - requires further distributional assumptions on error terms
+      - requires valid and relevant "instrument"
+      - estimates are very imprecise
 
 ## The end
 
