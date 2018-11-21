@@ -75,46 +75,6 @@
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \newif\ifbibliography
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -172,7 +132,7 @@ Michael Gebel and Friedhelm Pfeiffer}
     Returns to education
   \end{itemize}
 \item
-  Emirical framework
+  Empirical framework
 
   \begin{itemize}
   \tightlist
@@ -549,65 +509,86 @@ Comparison}\label{replication-and-comparison-1}}
 
 \end{frame}
 
-\begin{frame}[fragile]{codes}
-\protect\hypertarget{codes}{}
+\begin{frame}[fragile]{Stata Implementation (CMI)}
+\protect\hypertarget{stata-implementation-cmi}{}
 
-TODO:codes
+\footnotesize
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{***}\NormalTok{ GLM regression with Poisson distribution}
-\ExtensionTok{glm}\NormalTok{ school sex age age_sq rural edu_f occ_f edu_m, ///}
-    \ExtensionTok{family}\NormalTok{(poisson) }\FunctionTok{link}\NormalTok{(log)}
+\begin{verbatim}
+*** GLM regression with Poisson distribution
+glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
     
-\ExtensionTok{***}\NormalTok{ Predict conditional mean and extract pearson residuals}
-\ExtensionTok{predict}\NormalTok{ condMean, mu}
-\ExtensionTok{predict}\NormalTok{ res_pears, pearson}
+*** Predict conditional mean and extract pearson residuals
+predict condMean, mu
+predict res_pears, pearson
 
-\ExtensionTok{***}\NormalTok{ Calculate residual}
-\ExtensionTok{gen}\NormalTok{ resid = school - condMean}
+*** Calculate residual
+gen resid = school - condMean
 
-\ExtensionTok{***}\NormalTok{ Estimate sigma^2}
-\ExtensionTok{egen}\NormalTok{ sigma_sq_pears = mean(res_pears^2)}
+*** Estimate sigma^2
+egen sigma_sq_pears = mean(res_pears^2)
 
-\ExtensionTok{***}\NormalTok{ generate APE}
-\ExtensionTok{egen}\NormalTok{ bCMI = mean((resid*lnw)}\ExtensionTok{/}\NormalTok{ (sigma_sq_pears*condMean))}
-\end{Highlighting}
-\end{Shaded}
+*** generate APE
+egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
+\end{verbatim}
 
-\end{frame}
-
-\begin{frame}{codes}
-\protect\hypertarget{codes-1}{}
-
-\includegraphics[width=\textwidth,height=3.125in]{./img/code_CMI01.png}
+\normalsize
 
 \end{frame}
 
-\begin{frame}[fragile]{codes}
-\protect\hypertarget{codes-2}{}
+\begin{frame}[fragile]{Stata Implementation (Bootstrapping)}
+\protect\hypertarget{stata-implementation-bootstrapping}{}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{*}\NormalTok{ First step: Estimate the reduced form of schooling, i.e. regress schooling }
-\ExtensionTok{*}\NormalTok{ on all exogeneous variables including the instrument (siblings)}
-\ExtensionTok{reg}\NormalTok{ school sex age age_sq rural edu_f edu_m occ_f sibl if syear==}\KeywordTok{`}\ExtensionTok{n}\StringTok{'}
+\footnotesize
 
-\StringTok{* Obtain the residuals}
-\StringTok{predict v`n'}\NormalTok{, res}
+\begin{verbatim}
+program define myCMI, rclass // return scalar as r() macro
+  preserve    // using preserve/restore due to repeated sampling 
+    bsample   // setup for boostrap sampling 
+    
+    ***************************************
+    * run estimation as in previous slide *
+    ***************************************
+    
+    *** Return variable of interest
+    local bCMI=bCMI 
+    return scalar bCMI_return = `bCMI'
+  restore
+end
 
-\ExtensionTok{*}\NormalTok{ Second step:  Estimate the structural equation and include the residuals from }
-\ExtensionTok{*}\NormalTok{ the reduced form as an additional regressor}
-\ExtensionTok{qui}\NormalTok{: reg lnw school sex age age_sq rural edu_f edu_m ///}
-    \ExtensionTok{occ_f}\NormalTok{ v}\KeywordTok{`}\NormalTok{n}\StringTok{' c.v`n'}\NormalTok{#c.school if syear==}\KeywordTok{`}\ExtensionTok{n}\StringTok{' // exclude instrument}
-\end{Highlighting}
-\end{Shaded}
+*** Run boostrapping
+forv n = 1984/`endYear' {
+  bootstrap r(bCMI_return), reps(`reps') seed(42): myCMI if syear == `n'
+}
+\end{verbatim}
+
+\normalsize
 
 \end{frame}
 
-\hypertarget{results-comparison-and-conclusion}{%
-\section{Results comparison and
-conclusion}\label{results-comparison-and-conclusion}}
+\begin{frame}[fragile]{Stata Implementation (CF)}
+\protect\hypertarget{stata-implementation-cf}{}
+
+\footnotesize
+
+\begin{verbatim}
+* First step: Estimate the reduced form of schooling, i.e. regress
+* schooling  on all exogeneous variables including the instrument (siblings)
+reg school sex age age_sq rural edu_f edu_m occ_f sibl ///
+    if syear==`n'
+
+* Obtain the residuals
+predict v`n', res
+
+* Second step:  Estimate the structural equation and include the
+* residuals from  the reduced form as an additional regressor
+reg lnw school sex age age_sq rural edu_f edu_m ///
+    occ_f v`n' c.v`n'#c.school if syear==`n'
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
 
 \hypertarget{results}{%
 \subsection{Results}\label{results}}
@@ -710,8 +691,8 @@ Coefficients of the control functions
 
 \end{frame}
 
-\begin{frame}{Heterogenous returns to education by gender I}
-\protect\hypertarget{heterogenous-returns-to-education-by-gender-i}{}
+\begin{frame}{Heterogenous returns to education}
+\protect\hypertarget{heterogenous-returns-to-education}{}
 
 \begin{figure}
 \centering
@@ -721,8 +702,8 @@ Coefficients of the control functions
 
 \end{frame}
 
-\begin{frame}{Heterogenous returns to education by gender II}
-\protect\hypertarget{heterogenous-returns-to-education-by-gender-ii}{}
+\begin{frame}{Heterogenous returns to education}
+\protect\hypertarget{heterogenous-returns-to-education-1}{}
 
 \begin{figure}
 \centering
@@ -783,8 +764,8 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 \hypertarget{conclusion}{%
 \subsection{Conclusion}\label{conclusion}}
 
-\begin{frame}{Pro's and Con's of estimation methods}
-\protect\hypertarget{pros-and-cons-of-estimation-methods}{}
+\begin{frame}{Conclusion}
+\protect\hypertarget{conclusion-1}{}
 
 \begin{itemize}
 \tightlist
@@ -810,8 +791,115 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{The end}
-\protect\hypertarget{the-end}{}
+\hypertarget{the-end}{%
+\subsection{The end}\label{the-end}}
+
+\begin{frame}[allowframebreaks]{Appendix}
+\protect\hypertarget{appendix}{}
+
+\begingroup\fontsize{7}{9}\selectfont
+
+\begin{longtable}[t]{rrrrrrrl}
+\caption{\label{tab:unnamed-chunk-6}Summary original results GB(2010).}\\
+\toprule
+year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
+\midrule
+\endfirsthead
+\caption[]{Summary original results GB(2010). \textit{(continued)}}\\
+\toprule
+year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+1984 & 0.074 & 0.004 & 0.066 & 0.004 & 0.075 & 0.079 & 1.545\\
+1985 & 0.065 & 0.004 & 0.059 & 0.004 & 0.032 & 0.131 & 1.600\\
+1986 & 0.069 & 0.004 & 0.061 & 0.004 & 0.077 & 0.091 & 1.682\\
+1987 & 0.070 & 0.004 & 0.063 & 0.004 & 0.090 & 0.048 & 1.775\\
+1988 & 0.069 & 0.004 & 0.065 & 0.004 & 0.081 & 0.041 & 1.798\\
+\addlinespace
+1989 & 0.067 & 0.003 & 0.063 & 0.004 & 0.067 & 0.038 & 1.922\\
+1990 & 0.063 & 0.003 & 0.059 & 0.004 & 0.048 & 0.031 & 2.007\\
+1991 & 0.062 & 0.003 & 0.060 & 0.004 & 0.037 & 0.030 & 2.122\\
+1992 & 0.064 & 0.003 & 0.057 & 0.004 & 0.049 & 0.027 & 2.107\\
+1993 & 0.060 & 0.003 & 0.057 & 0.004 & 0.062 & 0.026 & 2.124\\
+\addlinespace
+1994 & 0.057 & 0.003 & 0.051 & 0.004 & 0.055 & 0.022 & 2.082\\
+1995 & 0.058 & 0.003 & 0.053 & 0.004 & 0.064 & 0.024 & 2.075\\
+1996 & 0.055 & 0.003 & 0.049 & 0.004 & 0.054 & 0.025 & 2.057\\
+1997 & 0.057 & 0.003 & 0.054 & 0.003 & 0.074 & 0.025 & 2.011\\
+1998 & 0.054 & 0.003 & 0.049 & 0.003 & 0.053 & 0.021 & 2.145\\
+\addlinespace
+1999 & 0.058 & 0.003 & 0.054 & 0.003 & 0.072 & 0.023 & 2.163\\
+2000 & 0.065 & 0.002 & 0.059 & 0.003 & 0.108 & 0.024 & 3.965\\
+2001 & 0.065 & 0.002 & 0.062 & 0.003 & 0.097 & 0.022 & 3.961\\
+2002 & 0.068 & 0.003 & 0.066 & 0.003 & 0.106 & 0.030 & 3.668\\
+2003 & 0.064 & 0.003 & 0.062 & 0.003 & 0.123 & 0.028 & 3.476\\
+\addlinespace
+2004 & 0.064 & 0.003 & 0.062 & 0.003 & 0.115 & 0.030 & 3.366\\
+2005 & 0.065 & 0.003 & 0.064 & 0.003 & 0.113 & 0.032 & 3.220\\
+2006 & 0.064 & 0.003 & 0.063 & 0.003 & 0.133 & 0.033 & 3.477\\*
+\end{longtable}\endgroup{}
+
+\begingroup\fontsize{7}{9}\selectfont
+
+\begin{longtable}[t]{rrrrrrrl}
+\caption{\label{tab:unnamed-chunk-7}Summary replication results.}\\
+\toprule
+year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
+\midrule
+\endfirsthead
+\caption[]{Summary replication results. \textit{(continued)}}\\
+\toprule
+year & OLS & s.e. (OLS) & CMI & s.e. (CMI) & CF & s.e. (CF) & obs\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+1984 & 0.060 & 0.004 & 0.030 & 0.118 & 0.053 & 0.006 & 1.448\\
+1985 & 0.067 & 0.003 & 0.024 & 0.100 & 0.060 & 0.005 & 1.412\\
+1986 & 0.067 & 0.004 & 0.036 & 0.104 & 0.059 & 0.006 & 1.463\\
+1987 & 0.069 & 0.004 & 0.034 & 0.154 & 0.062 & 0.005 & 1.489\\
+1988 & 0.064 & 0.003 & 0.029 & 0.127 & 0.058 & 0.005 & 1.476\\
+\addlinespace
+1989 & 0.064 & 0.003 & 0.028 & 0.073 & 0.056 & 0.005 & 1.553\\
+1990 & 0.065 & 0.003 & 0.026 & 0.100 & 0.057 & 0.005 & 1.571\\
+1991 & 0.060 & 0.004 & 0.028 & 0.067 & 0.053 & 0.005 & 1.602\\
+1992 & 0.067 & 0.003 & 0.024 & 0.082 & 0.057 & 0.005 & 1.555\\
+1993 & 0.070 & 0.004 & 0.027 & 0.115 & 0.063 & 0.005 & 1.527\\
+\addlinespace
+1994 & 0.068 & 0.003 & 0.024 & 0.117 & 0.062 & 0.005 & 1.491\\
+1995 & 0.062 & 0.003 & 0.026 & 0.113 & 0.057 & 0.005 & 1.444\\
+1996 & 0.069 & 0.003 & 0.025 & 0.112 & 0.062 & 0.005 & 1.383\\
+1997 & 0.067 & 0.003 & 0.021 & 0.112 & 0.061 & 0.005 & 1.285\\
+1998 & 0.062 & 0.003 & 0.022 & 0.110 & 0.060 & 0.005 & 1.452\\
+\addlinespace
+1999 & 0.065 & 0.003 & 0.021 & 0.098 & 0.061 & 0.005 & 1.452\\
+2000 & 0.067 & 0.003 & 0.019 & 0.102 & 0.063 & 0.004 & 2.701\\
+2001 & 0.069 & 0.003 & 0.019 & 0.106 & 0.066 & 0.004 & 2.659\\
+2002 & 0.073 & 0.003 & 0.019 & 0.115 & 0.069 & 0.004 & 2.818\\
+2003 & 0.074 & 0.003 & 0.020 & 0.122 & 0.071 & 0.004 & 2.741\\
+\addlinespace
+2004 & 0.069 & 0.003 & 0.018 & 0.133 & 0.065 & 0.004 & 2.558\\
+2005 & 0.069 & 0.003 & 0.021 & 0.116 & 0.066 & 0.004 & 2.457\\
+2006 & 0.071 & 0.003 & 0.020 & 0.126 & 0.068 & 0.004 & 2.525\\
+2007 & 0.072 & 0.003 & 0.020 & 0.132 & 0.071 & 0.004 & 2.462\\
+2008 & 0.076 & 0.003 & 0.021 & 0.147 & 0.072 & 0.005 & 2.316\\
+\addlinespace
+2009 & 0.075 & 0.003 & 0.023 & 0.153 & 0.075 & 0.004 & 2.367\\
+2010 & 0.077 & 0.003 & 0.023 & 0.139 & 0.074 & 0.005 & 2.183\\
+2011 & 0.078 & 0.003 & 0.023 & 0.162 & 0.075 & 0.004 & 2.523\\
+2012 & 0.076 & 0.003 & 0.022 & 0.127 & 0.076 & 0.004 & 2.493\\
+2013 & 0.072 & 0.003 & 0.022 & 0.117 & 0.071 & 0.004 & 2.477\\
+\addlinespace
+2014 & 0.074 & 0.003 & 0.022 & 0.091 & 0.070 & 0.004 & 2.353\\
+2015 & 0.074 & 0.003 & 0.025 & 0.129 & 0.071 & 0.005 & 2.147\\
+2016 & 0.076 & 0.003 & 0.028 & 0.085 & 0.071 & 0.005 & 1.971\\*
+\end{longtable}\endgroup{}
 
 \end{frame}
 

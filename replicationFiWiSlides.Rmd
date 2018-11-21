@@ -25,6 +25,14 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+```
+
+```{r library, include=FALSE}
 library(knitr)
 library(kableExtra)
 ```
@@ -37,7 +45,7 @@ library(kableExtra)
 
     - Gebel & Pfeiffer (2010)
     - Returns to education
-- Emirical framework
+- Empirical framework
 
     - Correlated random coefficients model
     - Conditional Mean approach
@@ -127,17 +135,17 @@ equation.
 ![Simple OLS](img/rcmodel001.png){width="300px"}
 
 
-### Empirical Framework (Intuition) II
+### Empirical Framework (Intuition) II {.M}
 
 ![Multiple OLS with homogeneous return to Educ](img/rcmodel002.png){width="300px"}
 
 
-### Empirical Framework (Intuition) III
+### Empirical Framework (Intuition) III {.M}
 
 ![Correlated Random Coefficient Model](img/rcmodel003.png){width="300px"}
 
 
-### Distinction to conventional methods
+### Distinction to conventional methods {.M}
 
 - OLS
 
@@ -151,7 +159,7 @@ equation.
     in effect of educational policy reforms.
 
 
-### Conditional Mean Independence 
+### Conditional Mean Independence {.M}
 
 According to Wooldridge (2004, pg.7), **APE** is identified by: 
 $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
@@ -164,7 +172,7 @@ a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
   redundant --> "Staying longer in Education is determined by $X$ covariates".
 
-### Estimator for $\beta$ and GLM 
+### Estimator for $\beta$ and GLM {.M}
 
 The **APE** can be estimated by:
 
@@ -235,14 +243,11 @@ Interpretation of the coefficients of the control functions
 - Three estimation methods: OLS, CMI  CF
 - control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
 
-### codes {.M}
+### Stata Implementation (CMI) {.CMI}
 
-TODO:codes
-
-```{bash eval=FALSE, echo=T,  size="small"}
+```{stata, eval=F, echo=T, size="footnotesize"}
 *** GLM regression with Poisson distribution
-glm school sex age age_sq rural edu_f occ_f edu_m, ///
-    family(poisson) link(log)
+glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
     
 *** Predict conditional mean and extract pearson residuals
 predict condMean, mu
@@ -258,31 +263,47 @@ egen sigma_sq_pears = mean(res_pears^2)
 egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
 ```
 
-### codes
+### Stata Implementation (Bootstrapping) {.bootstrappp}
 
-![](./img/code_CMI01.png){height="300px"}
+```{stata, eval=F, echo=T, size="footnotesize"}
+program define myCMI, rclass // return scalar as r() macro
+  preserve    // using preserve/restore due to repeated sampling 
+    bsample   // setup for boostrap sampling 
+    
+    ***************************************
+    * run estimation as in previous slide *
+    ***************************************
+	
+  	*** Return variable of interest
+  	local bCMI=bCMI 
+  	return scalar bCMI_return = `bCMI'
+  restore
+end
 
+*** Run boostrapping
+forv n = 1984/`endYear' {
+  bootstrap r(bCMI_return), reps(`reps') seed(42): myCMI if syear == `n'
+}
+```
 
-### codes 
+### Stata Implementation (CF) {.CF}
 
-
-```{bash eval=FALSE, echo=T,  size="small"}
-* First step: Estimate the reduced form of schooling, i.e. regress schooling 
-* on all exogeneous variables including the instrument (siblings)
-reg school sex age age_sq rural edu_f edu_m occ_f sibl if syear==`n'
+```{stata, eval=F, echo=T, size="footnotesize"}
+* First step: Estimate the reduced form of schooling, i.e. regress
+* schooling  on all exogeneous variables including the instrument (siblings)
+reg school sex age age_sq rural edu_f edu_m occ_f sibl ///
+    if syear==`n'
 
 * Obtain the residuals
 predict v`n', res
 
-* Second step:  Estimate the structural equation and include the residuals from 
-* the reduced form as an additional regressor
-qui: reg lnw school sex age age_sq rural edu_f edu_m ///
-    occ_f v`n' c.v`n'#c.school if syear==`n' // exclude instrument
-
+* Second step:  Estimate the structural equation and include the
+* residuals from  the reduced form as an additional regressor
+reg lnw school sex age age_sq rural edu_f edu_m ///
+    occ_f v`n' c.v`n'#c.school if syear==`n'
 ```
 
 
-# Results comparison and conclusion
 
 ## Results
 
@@ -325,13 +346,16 @@ Coefficients of the control functions
 - that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
-### Heterogenous returns to education by gender I {.forfun}
+### Heterogenous returns to education {.forfun}
 
 ![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
 
-### Heterogenous returns to education by gender II {.forfun}
+### Heterogenous returns to education {.forfun}
 
 ![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
+
+
+### Results: Control Function (replication)
 
 
 ```{r include=FALSE}
@@ -339,11 +363,6 @@ dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
 dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
 dfRp <- read.csv("./tables/comparisonsRep.csv", dec=",")
 fontSize = 7
-```
-
-
-### Results: Control Function (replication)
-```{r}
 names(dfCF) <- c("year", "coef.", "s.e.",
                  "coef.", "s.e.", "p", 
                  "coef.", "s.e.", "p")
@@ -366,7 +385,7 @@ kable(x = head(dfCF, 14),
 
 ## Conclusion
 
-### Pro's and Con's of estimation methods
+### Conclusion
 
 - CMI
   - no analytical standard errors
@@ -375,7 +394,40 @@ kable(x = head(dfCF, 14),
   - requires further distributional assumptions on error terms
   - valid and relevant "instrument"
 
+## The end
 
+### Appendix {.allowframebreaks}
 
-### The end {.allowframebreaks}
+```{r}
+names(dfGP) <- c("year",
+                 "OLS", "s.e. (OLS)",
+                 "CMI", "s.e. (CMI)",
+                 "CF", "s.e. (CF)",
+                 "obs")
+
+kable(x = dfGP,
+      caption = "Summary original results GB(2010).",
+      format = "latex",
+      longtable = TRUE,
+      booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = fontSize)
+```
+
+```{r}
+names(dfRp) <- c("year",
+                 "OLS", "s.e. (OLS)",
+                 "CMI", "s.e. (CMI)",
+                 "CF", "s.e. (CF)",
+                 "obs")
+
+kable(x = dfRp,
+      caption = "Summary replication results.",
+      format = "latex",
+      longtable = TRUE,
+      booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = fontSize)
+```
+
 
