@@ -357,6 +357,7 @@ kable(x = head(dfCF, 14),
 
 ### Appendix {.allowframebreaks}
 
+
 ```{r}
 names(dfGP) <- c("year",
                  "OLS", "s.e. (OLS)",
