@@ -214,11 +214,13 @@ Interpretation of the coefficients of the control functions
 
 ### codes
 
+```{bash eval=FALSE, echo=T,  size="small"}
+*** GLM regression with Poisson distribution
+	glm school sex age age_sq rural edu_f occ_f edu_m, //family(poisson) link(log)
+
 ```
-*** Generalized linear regression model with Poisson distribution
-	glm school sex age age_sq rural edu_f occ_f edu_m, family(poisson) link(log)
-```
-TODO: play with codes
+
+
 
 ### Set-up
 
@@ -303,6 +305,7 @@ names(dfCF) <- c("year", "coef.", "s.e.",
 
 ```{r}
 kable(x = head(dfCF, 14),
+      caption = "Summary of Control Function estimates (replication)",
       format = "latex",
       longtable = TRUE,
       booktabs = TRUE,
@@ -313,8 +316,6 @@ kable(x = head(dfCF, 14),
   kable_styling(latex_options = c("repeat_header"),
                 font_size = fontSize)
 ```
-
-### Results: Control Function (replication)
 
 ## Conclusion
 
@@ -331,4 +332,3 @@ kable(x = head(dfCF, 14),
 
 ### The end {.allowframebreaks}
 
-TODO: add 
