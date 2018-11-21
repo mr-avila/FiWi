@@ -29,9 +29,9 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Introduction
+# Introduction {.L}
 
-### Outline
+### Outline {.L}
 
 - Theoretical Framework
 
@@ -49,8 +49,7 @@ library(kableExtra)
 
 ## Theoretical Framework
 
-
-### Summary of Gebel and Pfeiffer (2010)
+### Summary of Gebel and Pfeiffer (2010) {.M}
 
 - Basic idea: examine evolution of returns to education in West German labour
 market. 
@@ -60,12 +59,13 @@ expansion in Germany.
 
     - Wooldrigdge's (2004) **conditional mean independence**
     - Garen's (1984) **control function** approach, that requires an *exclusion
+    
   restriction*
     - as well as OLS
 - data: SOEP 1984-2006
 
 
-### Background Information {.allowframebreaks}
+### Background Information {.allowframebreaks .L}
 
 **Increase in educational attainment** 
 
@@ -89,9 +89,9 @@ expansion in Germany.
   - select jobs with higher expected returns. 
 
 
-## Econometric Approach
+## Econometric Approach 
 
-### Empirical Framework (Derivation) {.allowframebreaks}
+### Empirical Framework (Derivation) {.allowframebreaks .M}
 
 The study is based on the **correlated random coefficient model** (Wooldridge,
 2004) specified as:
@@ -122,7 +122,7 @@ equation.
 
 - still potential endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
 
-### Empirical Framework (Intuition) I
+### Empirical Framework (Intuition) I {.M}
 
 ![Simple OLS](img/rcmodel001.png){width="300px"}
 
@@ -175,7 +175,7 @@ $$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigm
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
-### Control Function Approach {.allowframebreaks}
+### Control Function Approach {.allowframebreaks} {.L}
 
 - Based on proposition by Garen (1984). 
 - CF approach can identify APE in heterogeneous returns while standard IV
@@ -183,7 +183,7 @@ approach may not.
 - Similar to Heckman two-step estimator.
 - Models schooling choice explicitly in first step
 
-**First stage**: modelling schooling choice
+**First step**: modelling schooling choice
 
 $$S_i = c'X_i + dZ_i + v_i ~~\text{with}~~ E(v_i \mid Z_i, X_i) = 0$$
 where:
@@ -199,7 +199,7 @@ where:
  
  - $v_i$ is positive if an individual acquires higher education than expected conditional on observed characteristics
 
-**Second stage**: augmented wage equation
+**Second step**: augmented wage equation
 $$\ln Y_i = a_i + \beta S_i + \gamma_1 v_i + \gamma_2 V_iS_i + w_i
 $$
 where: 
@@ -213,7 +213,7 @@ where:
 - $E(w_i \mid X_i, S_i, v_i) = 0$ (as shown in Heckman / Robb, 1985)
 
 
-### Control Function Approach III
+### Control Function Approach III {.L}
 
 Interpretation of the coefficients of the control functions
 
@@ -227,8 +227,17 @@ Interpretation of the coefficients of the control functions
 
 ## Replication and Comparison
 
-### codes
+### Set-up {.L}
 
+- We use the same sample: West Germans (not foreign-born or self-employed) between 25 and 60 years who work full-time
+- We have less observations than Gebel and Pfeiffer (2010) per survey year after we delete all observations with missing values
+- Yet, we extend the observation period until 2016
+- Three estimation methods: OLS, CMI  CF
+- control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
+
+### codes {.M}
+
+TODO:codes
 
 ```{bash eval=FALSE, echo=T,  size="small"}
 *** GLM regression with Poisson distribution
@@ -258,14 +267,14 @@ egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
 
 
 ```{bash eval=FALSE, echo=T,  size="small"}
-* First stage: Estimate the reduced form of schooling, i.e. regress schooling 
+* First step: Estimate the reduced form of schooling, i.e. regress schooling 
 * on all exogeneous variables including the instrument (siblings)
 reg school sex age age_sq rural edu_f edu_m occ_f sibl if syear==`n'
 
 * Obtain the residuals
 predict v`n', res
 
-* Second stage:  Estimate the structural equation and include the residuals from 
+* Second step:  Estimate the structural equation and include the residuals from 
 * the reduced form as an additional regressor
 qui: reg lnw school sex age age_sq rural edu_f edu_m ///
     occ_f v`n' c.v`n'#c.school if syear==`n' // exclude instrument
@@ -273,19 +282,20 @@ qui: reg lnw school sex age age_sq rural edu_f edu_m ///
 ```
 
 
-### Set-up
-
-- We use the same sample: West Germans (not foreign-born or self-employed) between 25 and 60 years who work full-time
-- We have less observations than Gebel and Pfeiffer (2010) per survey year after we delete all observations with missing values
-- Yet, we extend the observation period until 2016
-- Three estimation methods: OLS, CMI  CF
-- control variables: age and age squared, gender, father's education, mother's education, father's occupation, rural or urban household, number of siblings (as instrument)
-
 # Results comparison and conclusion
 
 ## Results
 
-### Estimated returns on education
+### Results Comparison I {.M}
+
+![Replication results: Comparison between OLS, CMI and CF approaches](img/results.png){height="250px"}
+
+### Results Comparison II {.M}
+
+![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
+
+
+### Estimated returns on education {.M}
 
 - Estimates from OLS and CMI are similar, yet, CMI produces lower estimates which points to a positive self-selection bias
 - Generally, CF estimates are much more volatile and less precise
@@ -295,9 +305,9 @@ Differences between replicated and original estimations
 - Our CMI estimates are on average larger than those of Gebel and Pfeiffer (2010) by 0.002 percentage points (first years lower, than larger)
 - Our CF estimates are on average significantly larger by 0.032 percentage points, though the divergence gets smaller from 2000 onwards
 
-### Control function estimates {.allowframebreaks}
+### Control function estimates {.allowframebreaks .L}
 
-Instrumental variable in first stage
+Instrumental variable in first step
 
 - *Number of siblings* is significant at the 0.1% level for all years
 - As expected, the number of siblings has a negative impact on the years of schooling (the estimates range between -0.13 and -0.23)
@@ -312,28 +322,14 @@ Coefficients of the control functions
     - Similarly, they are only slightly significant in the 1980s, and stronger significant in the early 2000s
     - The estimates are very similar to those of Gebel and Pfeiffer (2010)
 
-- that both coefficients are (mostly) negative hints that educational expansion caused more âless ableâ to achieve higher education
-
-### Divergences between replication and Gebel and Pfeiffer (2010)
-
-- sample not the same
-- large variance of CF approach
+- that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
-### Results Comparison I
-
-![Replication results: Comparison between OLS, CMI and CF approaches](img/OLS_CMI_CF_Repli.png){height="250px"}
-
-### Results Comparison II
-
-![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
-
-### Results Comparison III
+### Heterogenous returns to education by gender I {.forfun}
 
 ![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
 
-
-### Heterogenous returns to eduation
+### Heterogenous returns to education by gender II {.forfun}
 
 ![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
 
