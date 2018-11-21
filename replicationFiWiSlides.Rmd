@@ -175,7 +175,7 @@ $$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigm
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
 residuals and standard errors are bootstrapped.
 
-### Control Function Approach {.allowframebreaks} {.L}
+### Control Function Approach {.allowframebreaks .L}
 
 - Based on proposition by Garen (1984). 
 - CF approach can identify APE in heterogeneous returns while standard IV
