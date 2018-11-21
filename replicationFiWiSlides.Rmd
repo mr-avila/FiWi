@@ -95,9 +95,10 @@ expansion in Germany.
   - higher ability and motivation to stay longer in education.
   - select jobs with higher expected returns. 
 
-## Econometric Approach 
 
-### M: Empirical Framework (Derivation) {.allowframebreaks}
+## Econometric Framework 
+
+### M: Empirical Framework  {.allowframebreaks}
 
 The study is based on the **correlated random coefficient model** (Wooldridge,
 2004 and Heckman and Vytlacil, 1998) specified as:
@@ -109,7 +110,7 @@ where $\ln Y_i$ : log of wages and $S_i$ years of schooling of individual $i$
 - The model has, therefore, an **individual-specific intercept** $a_i$ and
 **slope** $b_i$ dependent on **observables** $X_i$ and **unobservables**
 $\varepsilon_{ai}$ and $\varepsilon_{bi}$.
-- Do not assume that $b_i$ and $S_i$ are independent 
+- No assumption of independence between $b_i$ and $S_i$
 --> Individuals with "unobservably" higher expected benefits from education are
 more likely to remain longer in education
 --> $b_i$ may be correlated with $S_i$ indicating positive self-selection.
@@ -123,7 +124,7 @@ In case of homogeneous returns to education the wage equation reduces to:
 $$\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}$$
 
 - Unobserved heterogeneity may only affect the **intercept** of the wage
-equation.
+equation through $\varepsilon_{ai}$.
 
 - still potential endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
 
@@ -144,24 +145,27 @@ equation.
 
 ### M: Distinction to conventional methods
 
-- OLS
+**OLS**:
 
-    - ability and "background" bias
-- IV Methods:
+- ability and "background" bias
 
-    - suitable if assume homogeneous returns to education.
-   - if education is correlated with **unobserved individual heterogeneity**, IV
-  methods may fail to identity APE.
-    - alternative: **L**ocal **A**verage **T**reatment **E**ffect if interested 
-    in effect of educational policy reforms.
+**IV Methods**:
 
+- suitable if assume homogeneous returns to education.
+- if education is correlated with **unobserved individual heterogeneity**, IV
+methods may fail to identity APE.
+  - alternative: **L**ocal **A**verage **T**reatment **E**ffect if interested 
+  in effect of educational policy reforms.
+
+
+## Econometric Approaches 
 
 ### M: Conditional Mean Independence
 
 According to Wooldridge (2004, pg.7), **APE** is identified if: 
-$$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
+$$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \quad (A.1)$$
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
-a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
+a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \quad (A.2)$$
 
 - (A.1): Redundancy of $X_i$ given $a_i$ and $b_i$ and $S_i$. 
 - (A.2): In the first two conditional moments of $S_i$, $a_i$ and $b_i$ are
@@ -176,6 +180,8 @@ The **APE** can be estimated by:
 
 $$\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
 \hat{Var}(S_i \mid X_i)\right)$$
+
+where,
 
 $$E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigma^2e^{\gamma X_i}$$
 Where $\sigma^2$ can be consistently estimated by the mean of squared Pearson
@@ -230,8 +236,6 @@ Interpretation of the coefficients of the control functions
 
 # Replication and Comparison
 
-## Replication and Comparison
-
 ### L: Set-up
 
 - We use the same sample: West Germans (not foreign-born or self-employed) between 25 and 60 years who work full-time
@@ -256,7 +260,7 @@ Interpretation of the coefficients of the control functions
 
 ### M: Results Comparison I
 
-![Replication results: Comparison between OLS, CMI and CF approaches](img/results.png){height="250px"}
+![Replication results: Comparison of OLS, CMI and CF approaches](img/results.png){height="250px"}
 
 ### M: Results Comparison II
 
@@ -323,11 +327,11 @@ kable(x = head(dfCF, 14),
 ```
 
 
-### ?: Heterogenous returns to education by gender I {.forfun}
+### Heterogenous RTE by gender I {.forfun}
 
 ![Replication results: **APE** by gender (CMI)](img/results_sex.png){height="250px"}
 
-### ?: Heterogenous returns to education by gender II {.forfun}
+### Heterogenous RTE by gender II {.forfun}
 
 ![Original Results **APE** by gender (CMI) (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
 

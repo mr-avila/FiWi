@@ -236,11 +236,11 @@ Michael Gebel and Friedhelm Pfeiffer}
 
 \end{frame}
 
-\hypertarget{econometric-approach}{%
-\subsection{Econometric Approach}\label{econometric-approach}}
+\hypertarget{econometric-framework}{%
+\subsection{Econometric Framework}\label{econometric-framework}}
 
-\begin{frame}[allowframebreaks]{M: Empirical Framework (Derivation)}
-\protect\hypertarget{m-empirical-framework-derivation}{}
+\begin{frame}[allowframebreaks]{M: Empirical Framework}
+\protect\hypertarget{m-empirical-framework}{}
 
 The study is based on the \textbf{correlated random coefficient model}
 (Wooldridge, 2004 and Heckman and Vytlacil, 1998) specified as:
@@ -257,7 +257,7 @@ individual \(i\)
   \(X_i\) and \textbf{unobservables} \(\varepsilon_{ai}\) and
   \(\varepsilon_{bi}\).
 \item
-  Do not assume that \(b_i\) and \(S_i\) are independent
+  No assumption of independence between \(b_i\) and \(S_i\)
   --\textgreater{} Individuals with ``unobservably'' higher expected
   benefits from education are more likely to remain longer in education
   --\textgreater{} \(b_i\) may be correlated with \(S_i\) indicating
@@ -275,7 +275,7 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 \begin{itemize}
 \item
   Unobserved heterogeneity may only affect the \textbf{intercept} of the
-  wage equation.
+  wage equation through \(\varepsilon_{ai}\).
 \item
   still potential endogeneity if \(\varepsilon_{ai}\) correlates with
   \(S_i\)
@@ -319,25 +319,26 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 \begin{frame}{M: Distinction to conventional methods}
 \protect\hypertarget{m-distinction-to-conventional-methods}{}
 
+\textbf{OLS}:
+
 \begin{itemize}
+\tightlist
 \item
-  OLS
+  ability and ``background'' bias
+\end{itemize}
+
+\textbf{IV Methods}:
+
+\begin{itemize}
+\tightlist
+\item
+  suitable if assume homogeneous returns to education.
+\item
+  if education is correlated with \textbf{unobserved individual
+  heterogeneity}, IV methods may fail to identity APE.
 
   \begin{itemize}
   \tightlist
-  \item
-    ability and ``background'' bias
-  \end{itemize}
-\item
-  IV Methods:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    suitable if assume homogeneous returns to education.
-  \item
-    if education is correlated with \textbf{unobserved individual
-    heterogeneity}, IV methods may fail to identity APE.
   \item
     alternative: \textbf{L}ocal \textbf{A}verage \textbf{T}reatment
     \textbf{E}ffect if interested in effect of educational policy
@@ -347,13 +348,16 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 
 \end{frame}
 
+\hypertarget{econometric-approaches}{%
+\subsection{Econometric Approaches}\label{econometric-approaches}}
+
 \begin{frame}{M: Conditional Mean Independence}
 \protect\hypertarget{m-conditional-mean-independence}{}
 
 According to Wooldridge (2004, pg.7), \textbf{APE} is identified if:
-\[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)\]
+\[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \quad (A.1)\]
 \[E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
-a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
+a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \quad (A.2)\]
 
 \begin{itemize}
 \tightlist
@@ -377,6 +381,8 @@ The \textbf{APE} can be estimated by:
 
 \[\hat \beta = \frac{1}{N} \sum_{i=1}^N \left( \left( S_i - \hat E (S_i \mid X_i) \ln Y_i \right) \middle/
 \hat{Var}(S_i \mid X_i)\right)\]
+
+where,
 
 \[E(S_i \mid X_i ) = e^{\gamma X_i}  ~~~\text{and}~~~ Var(S_i \mid X_i ) = \sigma^2e^{\gamma X_i}\]
 Where \(\sigma^2\) can be consistently estimated by the mean of squared
@@ -476,10 +482,6 @@ Interpretation of the coefficients of the control functions
 \hypertarget{replication-and-comparison}{%
 \section{Replication and Comparison}\label{replication-and-comparison}}
 
-\hypertarget{replication-and-comparison-1}{%
-\subsection{Replication and
-Comparison}\label{replication-and-comparison-1}}
-
 \begin{frame}{L: Set-up}
 \protect\hypertarget{l-set-up}{}
 
@@ -533,8 +535,7 @@ Comparison}\label{replication-and-comparison-1}}
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,height=2.60417in]{img/results.png}
-\caption{Replication results: Comparison between OLS, CMI and CF
-approaches}
+\caption{Replication results: Comparison of OLS, CMI and CF approaches}
 \end{figure}
 
 \end{frame}
@@ -682,8 +683,8 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 
 \end{frame}
 
-\begin{frame}{?: Heterogenous returns to education by gender I}
-\protect\hypertarget{heterogenous-returns-to-education-by-gender-i}{}
+\begin{frame}{Heterogenous RTE by gender I}
+\protect\hypertarget{heterogenous-rte-by-gender-i}{}
 
 \begin{figure}
 \centering
@@ -693,8 +694,8 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 
 \end{frame}
 
-\begin{frame}{?: Heterogenous returns to education by gender II}
-\protect\hypertarget{heterogenous-returns-to-education-by-gender-ii}{}
+\begin{frame}{Heterogenous RTE by gender II}
+\protect\hypertarget{heterogenous-rte-by-gender-ii}{}
 
 \begin{figure}
 \centering
