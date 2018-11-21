@@ -100,7 +100,7 @@ expansion in Germany.
 ### M: Empirical Framework (Derivation) {.allowframebreaks}
 
 The study is based on the **correlated random coefficient model** (Wooldridge,
-2004) specified as:
+2004 and Heckman and Vytlacil, 1998) specified as:
 $$\ln Y_i = a_i + b_i S_i$$
 with $a_i = a'X_i + \varepsilon_{ai}$, and $b_i = b'X_i + \varepsilon_{bi}$
 
@@ -110,8 +110,8 @@ where $\ln Y_i$ : log of wages and $S_i$ years of schooling of individual $i$
 **slope** $b_i$ dependent on **observables** $X_i$ and **unobservables**
 $\varepsilon_{ai}$ and $\varepsilon_{bi}$.
 - Do not assume that $b_i$ and $S_i$ are independent 
---> Individuals with higher expected benefits from education are more likely to
-remain longer in education
+--> Individuals with "unobservably" higher expected benefits from education are
+more likely to remain longer in education
 --> $b_i$ may be correlated with $S_i$ indicating positive self-selection.
 
 - focus: estimate average partial effect (APE), which is the return per
@@ -127,22 +127,22 @@ equation.
 
 - still potential endogeneity if $\varepsilon_{ai}$ correlates with $S_i$
 
-### M: Empirical Framework (Intuition) I}
+### M: Empirical Framework (Intuition) I
 
 ![Simple OLS](img/rcmodel001.png){width="300px"}
 
 
-### M: Empirical Framework (Intuition) II}
+### M: Empirical Framework (Intuition) II
 
 ![Multiple OLS with homogeneous return to Educ](img/rcmodel002.png){width="300px"}
 
 
-### M: Empirical Framework (Intuition) III}
+### M: Empirical Framework (Intuition) III
 
 ![Correlated Random Coefficient Model](img/rcmodel003.png){width="300px"}
 
 
-### M: Distinction to conventional methods}
+### M: Distinction to conventional methods
 
 - OLS
 
@@ -156,7 +156,7 @@ equation.
     in effect of educational policy reforms.
 
 
-### M: Conditional Mean Independence}
+### M: Conditional Mean Independence
 
 According to Wooldridge (2004, pg.7), **APE** is identified if: 
 $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
@@ -170,7 +170,7 @@ a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
 2004, pg.7).
 
 
-### M: Estimator for $\beta$ and GLM}
+### M: Estimator for $\beta$ and GLM
 
 The **APE** can be estimated by:
 
@@ -254,11 +254,11 @@ Interpretation of the coefficients of the control functions
 
 ## Results
 
-### M: Results Comparison I}
+### M: Results Comparison I
 
 ![Replication results: Comparison between OLS, CMI and CF approaches](img/results.png){height="250px"}
 
-### M: Results Comparison II}
+### M: Results Comparison II
 
 ![Original Results (GP 2010, pg.30)](img/OLS_CMI_CF_GB2010.png){height="250px"}
 
