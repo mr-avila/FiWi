@@ -494,8 +494,50 @@ Comparison}\label{replication-and-comparison-1}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{***}\NormalTok{ Generalized linear regression model with Poisson distribution}
-    \ExtensionTok{glm}\NormalTok{ school sex age age_sq rural edu_f occ_f edu_m, family(poisson) }\FunctionTok{link}\NormalTok{(log)}
+\ExtensionTok{***}\NormalTok{ GLM regression with Poisson distribution}
+\ExtensionTok{glm}\NormalTok{ school sex age age_sq rural edu_f occ_f edu_m, ///}
+    \ExtensionTok{family}\NormalTok{(poisson) }\FunctionTok{link}\NormalTok{(log)}
+    
+\ExtensionTok{***}\NormalTok{ Predict conditional mean and extract pearson residuals}
+\ExtensionTok{predict}\NormalTok{ condMean, mu}
+\ExtensionTok{predict}\NormalTok{ res_pears, pearson}
+
+\ExtensionTok{***}\NormalTok{ Calculate residual}
+\ExtensionTok{gen}\NormalTok{ resid = school - condMean}
+
+\ExtensionTok{***}\NormalTok{ Estimate sigma^2}
+\ExtensionTok{egen}\NormalTok{ sigma_sq_pears = mean(res_pears^2)}
+
+\ExtensionTok{***}\NormalTok{ generate APE}
+\ExtensionTok{egen}\NormalTok{ bCMI = mean((resid*lnw)}\ExtensionTok{/}\NormalTok{ (sigma_sq_pears*condMean))}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{codes}
+\protect\hypertarget{codes-1}{}
+
+\includegraphics[width=\textwidth,height=3.125in]{./img/code_CMI01.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{codes}
+\protect\hypertarget{codes-2}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{*}\NormalTok{ First stage: Estimate the reduced form of schooling, i.e. regress schooling }
+\ExtensionTok{*}\NormalTok{ on all exogeneous variables including the instrument (siblings)}
+\ExtensionTok{reg}\NormalTok{ school sex age age_sq rural edu_f edu_m occ_f sibl if syear==}\KeywordTok{`}\ExtensionTok{n}\StringTok{'}
+
+\StringTok{* Obtain the residuals}
+\StringTok{predict v`n'}\NormalTok{, res}
+
+\ExtensionTok{*}\NormalTok{ Second stage:  Estimate the structural equation and include the residuals from }
+\ExtensionTok{*}\NormalTok{ the reduced form as an additional regressor}
+\ExtensionTok{qui}\NormalTok{: reg lnw school sex age age_sq rural edu_f edu_m ///}
+    \ExtensionTok{occ_f}\NormalTok{ v}\KeywordTok{`}\NormalTok{n}\StringTok{' c.v`n'}\NormalTok{#c.school if syear==}\KeywordTok{`}\ExtensionTok{n}\StringTok{' // exclude instrument}
 \end{Highlighting}
 \end{Shaded}
 
@@ -671,7 +713,7 @@ approaches}
 \begingroup\fontsize{7}{9}\selectfont
 
 \begin{longtable}[t]{rrrrrrrrr}
-\caption{\label{tab:unnamed-chunk-4}Summary of Control Function estimates (replication)}\\
+\caption{\label{tab:unnamed-chunk-5}Summary of Control Function estimates (replication)}\\
 \toprule
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{First Stage} & \multicolumn{6}{c}{Second Stage} \\
 \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-9}
@@ -745,8 +787,6 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
 
 \begin{frame}[allowframebreaks]{The end}
 \protect\hypertarget{the-end}{}
-
-TODO: add
 
 \end{frame}
 

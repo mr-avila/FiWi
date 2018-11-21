@@ -214,12 +214,48 @@ Interpretation of the coefficients of the control functions
 
 ### codes
 
+
 ```{bash eval=FALSE, echo=T,  size="small"}
 *** GLM regression with Poisson distribution
-	glm school sex age age_sq rural edu_f occ_f edu_m, //family(poisson) link(log)
+glm school sex age age_sq rural edu_f occ_f edu_m, ///
+    family(poisson) link(log)
+    
+*** Predict conditional mean and extract pearson residuals
+predict condMean, mu
+predict res_pears, pearson
 
+*** Calculate residual
+gen resid = school - condMean
+
+*** Estimate sigma^2
+egen sigma_sq_pears = mean(res_pears^2)
+
+*** generate APE
+egen bCMI = mean((resid*lnw)/ (sigma_sq_pears*condMean))
 ```
 
+### codes
+
+![](./img/code_CMI01.png){height="300px"}
+
+
+### codes 
+
+
+```{bash eval=FALSE, echo=T,  size="small"}
+* First stage: Estimate the reduced form of schooling, i.e. regress schooling 
+* on all exogeneous variables including the instrument (siblings)
+reg school sex age age_sq rural edu_f edu_m occ_f sibl if syear==`n'
+
+* Obtain the residuals
+predict v`n', res
+
+* Second stage:  Estimate the structural equation and include the residuals from 
+* the reduced form as an additional regressor
+qui: reg lnw school sex age age_sq rural edu_f edu_m ///
+    occ_f v`n' c.v`n'#c.school if syear==`n' // exclude instrument
+
+```
 
 
 ### Set-up
