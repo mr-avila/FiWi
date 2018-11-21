@@ -31,24 +31,37 @@ library(kableExtra)
 
 # Introduction
 
-## Theoretical Framework
-
 ### Outline
 
+- Theoretical Framework
 
+    - Gebel & Pfeiffer (2010)
+    - Returns to education
+- Emirical framework
+
+    - Correlated random coefficients model
+    - Conditional Mean approach
+    - Control funtion approach
+- Replication
+    - Set-up 
+    - Code
+    - Comparison of results
+
+## Theoretical Framework
 
 
 ### Summary of Gebel and Pfeiffer (2010)
 
-- basic idea: examine evolution of returns to education in West German labour
+- Basic idea: examine evolution of returns to education in West German labour
 market. 
 - Focus on change in returns to education over time as a consequence to education
 expansion in Germany.
 - methodology:
-  - Wooldrigdge's (2004) **conditional mean independence**
-  - Garen's (1984) **control function** approach, that requires an *exclusion
+
+    - Wooldrigdge's (2004) **conditional mean independence**
+    - Garen's (1984) **control function** approach, that requires an *exclusion
   restriction*
-  - as well as OLS
+    - as well as OLS
 - data: SOEP 1984-2006
 
 
@@ -127,10 +140,12 @@ equation.
 ### Distinction to conventional methods
 
 - OLS
-  - ability and "background" bias
+
+    - ability and "background" bias
 - IV Methods:
-  - suitable if assume homogeneous returns to education.
-  - if education is correlated with **unobserved individual heterogeneity**, IV
+
+    - suitable if assume homogeneous returns to education.
+   - if education is correlated with **unobserved individual heterogeneity**, IV
   methods may fail to identity APE.
     - alternative: **L**ocal **A**verage **T**reatment **E**ffect if interested 
     in effect of educational policy reforms.
@@ -318,7 +333,7 @@ Coefficients of the control functions
 ![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
 
 
-### Results Comparison IV
+### Heterogenous returns to eduation
 
 ![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
 
