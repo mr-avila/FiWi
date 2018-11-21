@@ -66,10 +66,9 @@ expansion in Germany.
 - methodology:
 
     - Wooldrigdge's (2004) **conditional mean independence**
-    - Garen's (1984) **control function** approach, that requires an *exclusion
-    
-  restriction*
-    - as well as OLS
+    - Garen's (1984) **control function** approach, that requires an 
+    *exclusion restriction*
+    - as well as OLS regression
 - data: SOEP 1984-2006
 
 
@@ -296,7 +295,6 @@ Coefficients of the control functions
 - that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
-<<<<<<< HEAD
 ### Heterogenous returns to education {.forfun}
 
 ![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
@@ -309,8 +307,6 @@ Coefficients of the control functions
 ### Results: Control Function (replication)
 
 
-=======
->>>>>>> 3c1c35d65dd668e08f32175b01932fad0322d158
 ```{r include=FALSE}
 dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
 dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
@@ -356,7 +352,6 @@ kable(x = head(dfCF, 14),
 - CF
   - requires further distributional assumptions on error terms
   - valid and relevant "instrument"
-<<<<<<< HEAD
 
 ## The end
 
@@ -393,7 +388,3 @@ kable(x = dfRp,
   kable_styling(latex_options = c("repeat_header"),
                 font_size = fontSize)
 ```
-
-
-=======
->>>>>>> 3c1c35d65dd668e08f32175b01932fad0322d158
