@@ -247,7 +247,6 @@ Interpretation of the coefficients of the control functions
 
 ![](./img/code_CMI.png)
 
-
 ### Stata Implementation (Bootstrapping) {.bootstrappp}
 
 ![](./img/code_bootstrapping.png)
@@ -255,8 +254,6 @@ Interpretation of the coefficients of the control functions
 ### Stata Implementation (CF) {.CF}
 
 ![](./img/code_CF.png)
-
-
 
 ## Results
 
@@ -299,6 +296,7 @@ Coefficients of the control functions
 - that both coefficients are (mostly) negative hints that educational expansion caused more "less abled" to achieve higher education
 
 
+<<<<<<< HEAD
 ### Heterogenous returns to education {.forfun}
 
 ![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
@@ -311,6 +309,8 @@ Coefficients of the control functions
 ### Results: Control Function (replication)
 
 
+=======
+>>>>>>> 3c1c35d65dd668e08f32175b01932fad0322d158
 ```{r include=FALSE}
 dfCF <- read.csv("./tables/comparisonsCF.csv", dec=",")
 dfGP <- read.csv("./tables/comparisonsGP2010.csv", dec=",")
@@ -336,6 +336,16 @@ kable(x = head(dfCF, 14),
                 font_size = fontSize)
 ```
 
+
+### Heterogenous returns to education by gender I {.forfun}
+
+![Replication results: **APE** by gender (CMI approach)](img/results_sex.png){height="250px"}
+
+### Heterogenous returns to education by gender II {.forfun}
+
+![Original Results (GP 2010, pg.34](img/GP2010_CMI_gender.png){height="250px"}
+
+
 ## Conclusion
 
 ### Conclusion
@@ -346,6 +356,7 @@ kable(x = head(dfCF, 14),
 - CF
   - requires further distributional assumptions on error terms
   - valid and relevant "instrument"
+<<<<<<< HEAD
 
 ## The end
 
@@ -384,3 +395,5 @@ kable(x = dfRp,
 ```
 
 
+=======
+>>>>>>> 3c1c35d65dd668e08f32175b01932fad0322d158
