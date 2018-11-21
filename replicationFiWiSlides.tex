@@ -350,7 +350,7 @@ to: \[\ln Y_i = a'X_i + \bar b S_i + \varepsilon_{ai}\]
 \begin{frame}{Conditional Mean Independence}
 \protect\hypertarget{conditional-mean-independence}{}
 
-According to Wooldridge (2004, pg.7), \textbf{APE} is identified by:
+According to Wooldridge (2004, pg.7), \textbf{APE} is identified if:
 \[E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)\]
 \[E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)\]
@@ -741,7 +741,9 @@ year & coef. & s.e. & coef. & s.e. & p & coef. & s.e. & p\\
   \item
     requires further distributional assumptions on error terms
   \item
-    valid and relevant ``instrument''
+    requires valid and relevant ``instrument''
+  \item
+    effiency issues
   \end{itemize}
 \end{itemize}
 

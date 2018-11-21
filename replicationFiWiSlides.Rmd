@@ -110,7 +110,6 @@ where $\ln Y_i$ : log of wages and $S_i$ years of schooling of individual $i$
 - The model has, therefore, an **individual-specific intercept** $a_i$ and
 **slope** $b_i$ dependent on **observables** $X_i$ and **unobservables**
 $\varepsilon_{ai}$ and $\varepsilon_{bi}$.
-
 - Do not assume that $b_i$ and $S_i$ are independent 
 --> Individuals with higher expected benefits from education are more likely to
 remain longer in education
@@ -160,7 +159,7 @@ equation.
 
 ### Conditional Mean Independence {.M}
 
-According to Wooldridge (2004, pg.7), **APE** is identified by: 
+According to Wooldridge (2004, pg.7), **APE** is identified if: 
 $$E (\ln Y_i \mid a_i, b_i, S_i, X_i,) = E (\ln Y_i \mid a_i, b_i, S_i) = a_i+b_i S_i \qquad (A.1)$$
 $$E(S_i \mid a_i, b_i, X_i) = E(S_i \mid X_i) ~~\text{and}~~ \mathrm{Var}(S_i \mid 
 a_i, b_i, X_i) = \mathrm{Var} (S_i \mid X_i) \qquad (A.2)$$
@@ -351,7 +350,8 @@ kable(x = head(dfCF, 14),
 
 - CF
   - requires further distributional assumptions on error terms
-  - valid and relevant "instrument"
+  - requires valid and relevant "instrument"
+  - effiency issues
 
 ## The end
 
